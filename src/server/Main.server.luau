@@ -336,7 +336,7 @@ local function addPlayer(player)
     local record = {
         player = player, ready = false, participating = false,
         lifeId = 0, status = "lobby", respawnAt = 0, protectedUntil = 0, killerName = "",
-        reveals = {}, spawnTicket = 0, retryAt = 0, lastControl = -math.huge,
+        reveals = {}, spawnTicket = 0, retryAt = 0, lastSync = -math.huge, lastReady = -math.huge,
         bucket = {tokens = Config.RequestBurst, updated = now},
     }
     roster[player] = record
@@ -358,9 +358,10 @@ end)
 request.OnServerEvent:Connect(function(player, kind, value)
     local record = roster[player]
     local now = time()
-    if not record or now - record.lastControl < 0.24 then return end
-    record.lastControl = now
+    if not record then return end
     if kind == "sync" then
+        if now - record.lastSync < 0.24 then return end
+        record.lastSync = now
         snapshot(record, Rules.ranking(scores))
         local plates = {}
         if phase == "playing" and active(record, now) then
@@ -376,6 +377,8 @@ request.OnServerEvent:Connect(function(player, kind, value)
         end
         update:FireClient(player, "plates", roundId, record.lifeId, plates, true)
     elseif kind == "ready" and type(value) == "boolean" and not record.participating then
+        if now - record.lastReady < 0.24 then return end
+        record.lastReady = now
         if value and not record.ready then record.readyAt = now end
         record.ready = value
         dirty = true

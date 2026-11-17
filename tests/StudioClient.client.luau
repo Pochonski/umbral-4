@@ -38,6 +38,54 @@ local gui = player.PlayerGui:WaitForChild("Umbral4", 12)
 assert(gui and #gui:GetChildren() == 5, "Client UI failed to initialize")
 
 local keyNames = {"Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"}
+
+local function timedCoveredAttack(code, at, aimAt)
+    local input = assert(UserInputService:CreateVirtualInput(), "VirtualInput unavailable")
+    local camera = workspace.CurrentCamera
+    local oldType, oldFrame = camera.CameraType, camera.CFrame
+    local eye = player.Character.Head.Position
+    local plates = workspace:WaitForChild("UmbralLocalPlates")
+    local function plateVisible()
+        for _, part in plates:GetChildren() do
+            local surface = part:FindFirstChildOfClass("SurfaceGui")
+            local label = surface and surface:FindFirstChildOfClass("TextLabel")
+            if label and label.Text == code then return surface.Enabled end
+        end
+        return false
+    end
+    local aimBinding = "UmbralQAEdgeCamera"
+    RunService:BindToRenderStep(aimBinding, Enum.RenderPriority.Camera.Value, function()
+        camera.CameraType = Enum.CameraType.Scriptable
+        camera.CFrame = CFrame.lookAt(eye, aimAt)
+    end)
+    local ok, result = pcall(function()
+        repeat task.wait() until plateVisible() or workspace:GetServerTimeNow() >= at - .45
+        local before = plateVisible()
+        local visibleUi = #plates:GetChildren()
+        local frameSize = tostring(camera.ViewportSize)
+        local function sendDigit(index, pressed)
+            local key = Enum.KeyCode["Keypad" .. keyNames[tonumber(code:sub(index, index)) + 1]]
+            input:SendKey(pressed, key, false)
+        end
+        for index = 1, 3 do
+            sendDigit(index, true)
+            task.wait(.03)
+            sendDigit(index, false)
+            task.wait(.03)
+        end
+        while workspace:GetServerTimeNow() < at do task.wait() end
+        local atSubmit, when = plateVisible(), workspace:GetServerTimeNow()
+        sendDigit(4, true)
+        task.wait(.05)
+        sendDigit(4, false)
+        return {before = before, atSubmit = atSubmit, pressedAt = when, visibleUi = visibleUi, frameSize = frameSize}
+    end)
+    RunService:UnbindFromRenderStep(aimBinding)
+    camera.CameraType = oldType
+    camera.CFrame = oldFrame
+    if ok then bridge:FireServer("edge", result) else bridge:FireServer("edge", {error = tostring(result)}) end
+end
+
 local function virtualKeyboard(code)
     local input = assert(UserInputService:CreateVirtualInput(), "VirtualInput unavailable")
     local function send(pressed, key)
@@ -145,8 +193,9 @@ local function virtualKeyboard(code)
     })
 end
 
-bridge.OnClientEvent:Connect(function(action, round, life, code, at)
+bridge.OnClientEvent:Connect(function(action, round, life, code, at, aimAt)
     if action == "ready" then
+        network.Request:FireServer("sync")
         network.Request:FireServer("ready", true)
     elseif action == "attack" then
         while at and workspace:GetServerTimeNow() < at do task.wait() end
@@ -168,6 +217,8 @@ bridge.OnClientEvent:Connect(function(action, round, life, code, at)
         bridge:FireServer("frames", #frameSamples, frameSamples[math.ceil(#frameSamples * .95)])
     elseif action == "ping" then
         bridge:FireServer("pong", round)
+    elseif action == "coveredKeyboard" then
+        timedCoveredAttack(code, at, aimAt)
     end
 end)
 

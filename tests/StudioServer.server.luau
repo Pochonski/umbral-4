@@ -8,6 +8,8 @@ local bridge = Instance.new("RemoteEvent")
 bridge.Name = "UmbralQABridge"
 local peers = {}
 local pingSent, pingSamples = {}, {}
+local departureTimes = {}
+Players.PlayerRemoving:Connect(function(player) departureTimes[player] = os.clock() end)
 bridge.OnServerEvent:Connect(function(player, action, first, second)
     local peer = peers[player]
     if not peer then
@@ -31,6 +33,8 @@ bridge.OnServerEvent:Connect(function(player, action, first, second)
         peer.keyboardLatency = first
     elseif action == "frames" then
         peer.frames = {count = first, p95 = second}
+    elseif action == "edge" then
+        peer.edge = first
     elseif action == "pong" and pingSent[first] then
         table.insert(pingSamples, (os.clock() - pingSent[first]) * 1000)
         pingSent[first] = nil
@@ -89,6 +93,7 @@ local function run()
     end, 30)
     assert(#attacker.state.scores == expected)
     assert(attacker.state.goal == (if expected < 4 then 10 elseif expected < 6 then 15 else 25))
+    pass("ready immediately after sync is accepted for all participants")
     pass("lobby, round, score and goal with " .. expected .. " real Studio client processes")
 
     task.spawn(function()
@@ -158,6 +163,47 @@ local function run()
     place(target, opposite, side)
     task.wait(.55)
     await("code is available again", function() return attacker.plates[targetId] == code end)
+
+    if type(args) == "table" and args.latencyEdges then
+        local cover = Instance.new("Part")
+        cover.Name = "QA Latency Cover"
+        cover.Anchored = true
+        cover.Size = Vector3.new(.6, 10, 2.4)
+        cover.Position = Vector3.new(0, 6, -38)
+        cover.Parent = workspace.UmbralWorld.EstacionDeRelevo
+        for _, scenario in {"cover", "turn"} do
+            attacker.edge = nil
+            local feedbackBefore = #attacker.replies
+            local changeAt = workspace:GetServerTimeNow() + 1.25
+            bridge:FireClient(attacker.player, "coveredKeyboard",
+                attacker.state.roundId, attacker.state.lifeId, code, changeAt + .025, opposite + Vector3.yAxis * 1.5)
+            while workspace:GetServerTimeNow() < changeAt do task.wait() end
+            if scenario == "cover" then
+                place(target, Vector3.new(6, 3.4, -32.5), side)
+            else
+                place(target, opposite, opposite + Vector3.xAxis)
+            end
+            local changed = workspace:GetServerTimeNow()
+            local result = await("client visibility at final keystroke", function() return attacker.edge end)
+            assert(not result.error, result.error)
+            assert(result.before, ("the client was not showing the plate before the transition (local plate parts=%d, viewport=%s)"):format(
+                result.visibleUi, result.frameSize
+            ))
+            await("server rejection after geometry changed", function()
+                return #attacker.replies > feedbackBefore and attacker.replies[#attacker.replies] == "miss"
+            end)
+            assert(kills(attacker) == 0 and target.state.status == "alive")
+            await("revocation arrives at client", function() return attacker.plates[targetId] == nil end)
+            print(("[UMBRAL EDGE] %s visibleBefore=%s visibleAtFourth=%s clientPressAfterChangeMs=%.1f server=miss"):format(
+                scenario, tostring(result.before), tostring(result.atSubmit), (result.pressedAt - changed) * 1000
+            ))
+            place(target, opposite, side)
+            await("reveal after returning to open view", function() return attacker.plates[targetId] == code end)
+        end
+        cover:Destroy()
+        pass("a valid code typed during cover or rear-angle transition is rejected by fresh server geometry")
+    end
+
     attack(attacker, {"malformed"})
     task.wait(.6)
     bridge:FireClient(attacker.player, "attack", attacker.state.roundId - 1, attacker.state.lifeId, code)
@@ -219,9 +265,10 @@ local function run()
     assert(kills(attacker) == 0)
     pass("round timeout declares the leader and next round resets scores")
 
+    local newcomer
     if type(args) == "table" and args.lateJoin then
         StudioTestService:AddPlayers(1)
-        local newcomer = await("late client registration", function()
+        newcomer = await("late client registration", function()
             for _, peer in peers do
                 if peer.registered and not table.find(group, peer) then return peer end
             end
@@ -235,11 +282,16 @@ local function run()
         pass("late connection receives the round and queues without taking a seat or receiving codes")
     end
 
+    local leaveRequested = os.clock()
     if args == nil then
         attacker.player:Kick("Umbral QA controlled disconnect")
     else
         bridge:FireClient(attacker.player, "leave")
     end
+    local departedAt = await("Studio server observed PlayerRemoving", function()
+        return departureTimes[attacker.player]
+    end, 20)
+    print(("[UMBRAL DISCONNECT] engineObservedMs=%.0f"):format((departedAt - leaveRequested) * 1000))
     await("client disconnect recorded", function()
         for _, score in target.state.scores do
             if score.userId == attacker.player.UserId and score.left then return true end
@@ -252,6 +304,19 @@ local function run()
         await("remaining clients tie", function() return target.state.phase == "results" end, 48)
         assert(#target.state.winners == expected - 1 and not table.find(target.state.winners, attacker.player.UserId))
         pass("disconnect excludes the departed player and equal remaining scores result in a tie")
+    end
+
+    if newcomer or expected >= 4 then
+        await("third round starts after departure", function()
+            return target.state.phase == "playing" and target.state.roundId == 3
+        end, 20)
+        assert(kills(target) == 0)
+        if newcomer then
+            await("queued newcomer joins the third round", function()
+                return newcomer.state.roundId == 3 and newcomer.state.participating
+            end)
+        end
+        pass("third consecutive round starts clean and enrolls any queued newcomer")
     end
 end
 

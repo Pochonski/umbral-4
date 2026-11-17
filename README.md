@@ -66,6 +66,7 @@ python tests/build_studio_qa.py (Get-Command rojo).Source Umbral4-QA.rbxlx
 Abre el lugar QA con **Servidor y clientes** y **2 clientes**. Busca `[UMBRAL QA COMPLETE] PASS` en la salida del servidor. La copia QA acelera las rondas y contiene el canal de pruebas. El lugar descargable usa los tiempos de juego normales.
 
 Consulta la [guía de validación de v0.2.0](docs/pruebas-v0.2.0.md) para ejecutar la matriz automatizada y repetir las pruebas con personas.
+El [informe de cierre técnico](docs/cierre-v0.2.0.md) recoge la evidencia y los casos pendientes.
 
 ### Actualizar una copia de v0.1.0
 
