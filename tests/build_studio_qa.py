@@ -7,11 +7,13 @@ import sys
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
-if len(sys.argv) != 3:
-    raise SystemExit("Usage: python tests/build_studio_qa.py path_to_rojo output.rbxlx")
+if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and sys.argv[3] != "--menu"):
+    raise SystemExit("Usage: python tests/build_studio_qa.py path_to_rojo output.rbxlx [--menu]")
 rojo, output = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()
 project = json.loads((root / "default.project.json").read_text(encoding="utf-8"))
 services = project["tree"]
+if len(sys.argv) == 4:
+    services["Workspace"].setdefault("$attributes", {})["UmbralMenuQA"] = True
 for group, filename in (
     (services["ServerScriptService"], "StudioServer.server.luau"),
     (services["StarterPlayer"]["StarterPlayerScripts"], "StudioClient.client.luau"),

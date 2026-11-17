@@ -1,4 +1,6 @@
 local TweenService = game:GetService("TweenService")
+local GuiService = game:GetService("GuiService")
+local Lobby = require(script.Parent.Lobby)
 
 local ink = Color3.fromRGB(235, 242, 243)
 local muted = Color3.fromRGB(153, 176, 188)
@@ -110,31 +112,9 @@ function Interface.create(playerGui)
         UDim2.new(1, -156, 1, -42), UDim2.fromOffset(120, 19), bold)
     settingsHint.TextStrokeTransparency = 0.4
 
-    local lobbyShade = canvas(gui, "Vestíbulo", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, dark, .15)
-    local lobbyGradient = make("UIGradient", lobbyShade, {
-        Transparency = NumberSequence.new({
-            NumberSequenceKeypoint.new(0, 0), NumberSequenceKeypoint.new(.46, .14),
-            NumberSequenceKeypoint.new(1, .92),
-        }),
-    })
-    lobbyGradient.Rotation = 0
-    local menu = canvas(lobbyShade, "Menú", UDim2.fromOffset(462, 344), UDim2.new(0, 52, .5, 0),
-        Vector2.new(0, .5), panel, .04)
-    corner(menu, 10)
-    stroke(menu, muted, .6)
-    local menuScale = make("UIScale", menu, {})
-    canvas(menu, "Acento", UDim2.fromOffset(54, 4), UDim2.fromOffset(26, 24), zero, gold)
-    label(menu, "ESTACIÓN DE RELEVO", 12, nil, gold, UDim2.fromOffset(26, 37), UDim2.fromOffset(410, 18), bold)
-    label(menu, "UMBRAL 4", 57, nil, ink, UDim2.fromOffset(24, 59), UDim2.fromOffset(414, 80), bold)
-    local subtitle = label(menu, "Lee el código rival. Escríbelo antes.", 17, nil, muted,
-        UDim2.fromOffset(27, 137), UDim2.fromOffset(410, 27))
-    subtitle.TextWrapped = true
-    local queueStatus = label(menu, "", 14, nil, mint,
-        UDim2.fromOffset(27, 184), UDim2.fromOffset(409, 37), bold)
-    queueStatus.TextWrapped = true
-    local playButton = button(menu, "Jugar", 26, 233, 410, gold, dark)
-    local howButton = button(menu, "Cómo jugar", 26, 286, 199, wash, ink)
-    local settingsButton = button(menu, "Ajustes", 237, 286, 199, wash, ink)
+    local lobby = Lobby.create(playerGui)
+    local playButton, howButton, settingsButton = lobby.play, lobby.how, lobby.settings
+    local queueStatus = lobby.queue
 
     local blackout = canvas(gui, "Reaparición", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, dark, .08)
     blackout.Visible = false
@@ -175,52 +155,68 @@ function Interface.create(playerGui)
 
     local modalShade = canvas(gui, "Panel", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, dark, .22)
     modalShade.Visible = false
-    local modal = canvas(modalShade, "Contenido", UDim2.fromOffset(470, 334), UDim2.fromScale(.5, .5), centered, panel)
+    -- The backdrop fills the viewport; only the interactive content uses safe insets.
+    modalShade.Active = true
+    local modalSafe = canvas(modalShade, "ZonaSegura", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, panel, 1)
+    local modal = canvas(modalSafe, "Contenido", UDim2.fromOffset(540, 440), UDim2.fromScale(.5, .5), centered, panel)
     corner(modal, 8)
     stroke(modal, muted, .6)
     local modalScale = make("UIScale", modal, {})
-    local modalTitle = label(modal, "", 27, nil, ink,
-        UDim2.fromOffset(25, 18), UDim2.fromOffset(403, 41), bold)
+    canvas(modal, "Acento", UDim2.fromOffset(96, 3), UDim2.fromOffset(32, 0), zero, gold)
+    label(modal, "UMBRAL 4  /  TERMINAL", 11, nil, muted,
+        UDim2.fromOffset(32, 22), UDim2.fromOffset(476, 20), Enum.Font.RobotoMono)
+    local modalTitle = label(modal, "", 30, nil, ink,
+        UDim2.fromOffset(32, 48), UDim2.fromOffset(476, 41), bold)
+    canvas(modal, "Separador", UDim2.fromOffset(476, 1), UDim2.fromOffset(32, 101), zero, wash)
     local how = canvas(modal, "Práctica", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, panel, 1)
     local instructions = label(how, "Muévete con WASD, salta con Espacio y mira con el ratón. Cuando veas la placa de un rival, escribe los cuatro dígitos.",
-        15, nil, muted, UDim2.fromOffset(26, 68), UDim2.fromOffset(417, 60))
+        16, nil, ink, UDim2.fromOffset(32, 117), UDim2.fromOffset(476, 65))
     instructions.TextWrapped = true
     local samplePlate = label(how, "0917", 41, center, dark,
-        UDim2.fromOffset(154, 143), UDim2.fromOffset(162, 55), Enum.Font.RobotoMono)
+        UDim2.fromOffset(189, 200), UDim2.fromOffset(162, 55), Enum.Font.RobotoMono)
     samplePlate.BackgroundTransparency = 0
     samplePlate.BackgroundColor3 = Color3.fromRGB(255, 239, 194)
     corner(samplePlate, 5)
     local demoDigits = label(how, "· · · ·", 23, center, gold,
-        UDim2.fromOffset(41, 202), UDim2.fromOffset(388, 34), Enum.Font.RobotoMono)
-    local demoNote = label(how, "Escribe el código para probar el ataque", 13, center, muted,
-        UDim2.fromOffset(26, 241), UDim2.fromOffset(418, 20))
+        UDim2.fromOffset(32, 266), UDim2.fromOffset(476, 34), Enum.Font.RobotoMono)
+    local demoNote = label(how, "Escribe el código para probar el ataque", 14, center, ink,
+        UDim2.fromOffset(32, 310), UDim2.fromOffset(476, 23))
+    label(how, "RETROCESO  /  BORRAR DÍGITO", 11, center, muted,
+        UDim2.fromOffset(32, 340), UDim2.fromOffset(476, 18), Enum.Font.RobotoMono)
     local settings = canvas(modal, "Ajustes", UDim2.fromScale(1, 1), UDim2.fromScale(0, 0), zero, panel, 1)
-    local sensitivity = label(settings, "", 16, nil, ink, UDim2.fromOffset(27, 80), UDim2.fromOffset(248, 31))
-    local volume = label(settings, "", 16, nil, ink, UDim2.fromOffset(27, 133), UDim2.fromOffset(248, 31))
+    local sensitivity = label(settings, "", 16, nil, ink, UDim2.fromOffset(32, 133), UDim2.fromOffset(340, 42))
+    local volume = label(settings, "", 16, nil, ink, UDim2.fromOffset(32, 197), UDim2.fromOffset(340, 42))
     local settingsButtons = {
-        sensitivityDown = button(settings, "−", 336, 76, 46, wash, ink),
-        sensitivityUp = button(settings, "+", 397, 76, 46, wash, ink),
-        volumeDown = button(settings, "−", 336, 129, 46, wash, ink),
-        volumeUp = button(settings, "+", 397, 129, 46, wash, ink),
-        motion = button(settings, "", 26, 188, 418, wash, ink),
+        sensitivityDown = button(settings, "−", 398, 133, 46, wash, ink),
+        sensitivityUp = button(settings, "+", 462, 133, 46, wash, ink),
+        volumeDown = button(settings, "−", 398, 197, 46, wash, ink),
+        volumeUp = button(settings, "+", 462, 197, 46, wash, ink),
+        motion = button(settings, "", 32, 270, 476, wash, ink),
     }
-    local closeButton = button(modal, "Volver", 26, 274, 418, gold, dark)
+    label(settings, "Los ajustes se conservan durante esta sesión.", 13, center, muted,
+        UDim2.fromOffset(32, 330), UDim2.fromOffset(476, 23))
+    local closeButton = button(modal, "Volver", 32, 376, 476, gold, dark)
 
     local view = {
         gui = gui, play = playButton, how = howButton, settings = settingsButton,
         close = closeButton, controls = settingsButtons, modal = nil, reduced = false,
     }
+    local optionFeedback = {}
+    for _, item in settingsButtons do
+        table.insert(optionFeedback, Lobby.buttonFeedback(item, function() return view.reduced end, false))
+    end
+    table.insert(optionFeedback, Lobby.buttonFeedback(closeButton, function() return view.reduced end, true))
 
     function view.resize(viewport)
         local scale = math.clamp(math.min(viewport.X / 680, viewport.Y / 620), .46, 1.15)
-        menuScale.Scale = scale
-        deathScale.Scale, resultScale.Scale, modalScale.Scale = scale, scale, scale
+        lobby.resize(viewport)
+        deathScale.Scale, resultScale.Scale = scale, scale
+        local topLeft, bottomRight = GuiService:GetGuiInset()
+        modalSafe.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
+        modalSafe.Size = UDim2.new(1, -topLeft.X - bottomRight.X, 1, -topLeft.Y - bottomRight.Y)
+        modalScale.Scale = math.min(1.2, viewport.Y / 720, math.max(.1, (viewport.X - topLeft.X - bottomRight.X - 48) / 540),
+            math.max(.1, (viewport.Y - topLeft.Y - bottomRight.Y - 48) / 440))
         for _, scaleObject in topScales do scaleObject.Scale = scale end
-        if viewport.X < 700 then
-            menu.AnchorPoint, menu.Position = centered, UDim2.fromScale(.5, .5)
-        else
-            menu.AnchorPoint, menu.Position = Vector2.new(0, .5), UDim2.new(0, 52, .5, 0)
-        end
     end
 
     function view.showModal(name)
@@ -232,6 +228,8 @@ function Interface.create(playerGui)
 
     function view.options(sensitivityValue, volumeValue, reduce)
         view.reduced = reduce
+        lobby.options(reduce)
+        for _, refresh in optionFeedback do refresh() end
         sensitivity.Text = string.format("Sensibilidad  ·  %d %%", math.round(sensitivityValue * 100))
         volume.Text = string.format("Efectos  ·  %d %%", math.round(volumeValue * 100))
         settingsButtons.motion.Text = if reduce then "Movimiento reducido  ·  Activado" else "Movimiento reducido  ·  Desactivado"
@@ -270,11 +268,11 @@ function Interface.create(playerGui)
         local alive = playing and state.status == "alive"
         hud.Visible = alive
         crosshair.Visible = alive
-        lobbyShade.Visible = not playing and state.phase ~= "results"
+        lobby.show(not playing and state.phase ~= "results")
         blackout.Visible = playing and not alive
         resultsShade.Visible = state.phase == "results"
         playButton.Active = supported
-        playButton.AutoButtonColor = supported
+        playButton.AutoButtonColor = false
         playButton.BackgroundColor3 = if supported then gold else wash
         playButton.TextColor3 = if supported then dark else ink
         playButton.Text = if not supported then "Requiere teclado y ratón"

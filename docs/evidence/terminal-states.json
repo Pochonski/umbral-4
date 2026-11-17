@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"syntheticStates\":true,\"checks\":{\"1\":\"unsupported device disables Play with explanation\",\"3\":\"late participant remains in the terminal queued for next round\",\"2\":\"countdown presents server deadline\",\"5\":\"return with reduced motion has no entrance displacement\",\"4\":\"combat, death and results never display the terminal\"}}"
+    }
+  ],
+  "isError": false
+}
