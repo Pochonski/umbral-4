@@ -6,6 +6,13 @@ Se implementó la presentación elegida por el propietario: una terminal industr
 
 La candidata está lista para revisión visual. La validación técnica completa permanece abierta hasta ejecutar la integración de dos clientes del menú y recoger una comparación de rendimiento sin otras cargas gráficas. No se publicaron experiencias ni se fusionaron los PR existentes.
 
+## Revisión y trazabilidad
+
+- [PR #3 en borrador](https://github.com/Pochonski/umbral-4/pull/3), dirigido a la rama artística.
+- [Commit de implementación 06dd02c](https://github.com/Pochonski/umbral-4/commit/06dd02c205de13321cad262823bc15ab015481cd).
+- [GitHub Actions: validación correcta](https://github.com/Pochonski/umbral-4/actions/runs/44189410453) sobre ese commit: compilación Luau, análisis de módulos puros, pruebas y compilación reproducible.
+- Los PR #1 y #2 permanecen abiertos en borrador, sin cambios de esta intervención.
+
 ## Auditoría de la interfaz anterior
 
 El menú anterior tenía una tarjeta lateral de 462 × 344 unidades, una misma superficie para marca, estado y acciones, tipografía poco diferenciada y controles secundarios muy próximos al botón principal. Su paleta ya era coherente con el juego y la práctica de escritura era útil. Se conservaron ambas, junto con todos los ajustes y la lógica de cola. La cámara elevada presentaba principalmente tejados.
