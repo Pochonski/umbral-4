@@ -1,0 +1,49 @@
+name: Umbral 4 QA
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Install pinned Luau and Rojo
+        shell: bash
+        run: |
+          tools="$RUNNER_TEMP/umbral-tools"
+          mkdir -p "$tools/luau" "$tools/rojo"
+          cd "$tools"
+          curl -fsSL --retry 3 https://github.com/luau-lang/luau/releases/download/0.747/luau-ubuntu.zip -o luau.zip
+          curl -fsSL --retry 3 https://github.com/rojo-rbx/rojo/releases/download/v7.7.1/rojo-7.7.1-linux-x86_64.zip -o rojo.zip
+          echo '6a740240248e872815865a2cb03b0c327f24939478f1d0081a0540cdfd77fdaa  luau.zip' | sha256sum -c -
+          echo '00feb4fa0829a1dd72b49df2639da519a352bfe13cadcd83969e2ba2bb5693c4  rojo.zip' | sha256sum -c -
+          unzip -q luau.zip -d luau
+          unzip -q rojo.zip -d rojo
+          chmod +x luau/luau luau/luau-compile luau/luau-analyze rojo/rojo
+          printf '%s\n' "$tools/luau" "$tools/rojo" >> "$GITHUB_PATH"
+
+      - name: Compile scripts and check pure Luau modules
+        shell: bash
+        run: |
+          mapfile -t scripts < <(git ls-files 'src/*.luau' 'tests/*.luau')
+          luau-compile --null "${scripts[@]}"
+          luau-analyze src/client/InputBuffer.luau src/shared/Config.luau src/shared/Rules.luau
+          luau tests/rules.luau
+          luau tests/input_buffer.luau
+
+      - name: Verify reproducible build and scripts-only sync
+        shell: bash
+        run: |
+          directory="$(mktemp -d)"
+          rojo build default.project.json -o "$directory/Umbral4.rbxlx"
+          rojo build default.project.json -o "$directory/Umbral4-rebuild.rbxlx"
+          rojo sourcemap sync.project.json -o "$directory/sync.json"
+          python3 tests/verify_place.py "$directory/Umbral4.rbxlx" "$directory/Umbral4-rebuild.rbxlx" "$directory/sync.json"

@@ -22,9 +22,8 @@ end
 
 local request = remote("Request")
 local submit = remote("SubmitCode")
-local stateChanged = remote("State")
-local plateChanges = remote("Plates")
-local feedback = remote("Feedback")
+-- One reliable stream preserves the order of snapshots, plate changes and hit feedback.
+local update = remote("Update")
 local random = Random.new()
 local roster, scores, codeIndex = {}, {}, {}
 local codePool = Rules.newCodePool()
@@ -59,7 +58,7 @@ local function active(record, now)
 end
 
 local function snapshot(record, ranking)
-    stateChanged:FireClient(record.player, {
+    update:FireClient(record.player, "state", {
         phase = phase, roundId = roundId, deadline = deadline, goal = goal,
         ready = record.ready, readyCount = count("ready"), participating = record.participating,
         status = record.status, lifeId = record.lifeId, respawnAt = record.respawnAt,
@@ -73,7 +72,7 @@ local function revoke(target, resetObserver)
         local reveal = observer.reveals[target.player.UserId]
         if reveal then
             if reveal.visible then
-                plateChanges:FireClient(observer.player, roundId, observer.lifeId, {
+                update:FireClient(observer.player, "plates", roundId, observer.lifeId, {
                     { userId = target.player.UserId, lifeId = reveal.lifeId },
                 })
             end
@@ -83,7 +82,7 @@ local function revoke(target, resetObserver)
     if resetObserver then
         table.clear(target.reveals)
         if target.player.Parent == Players then
-            plateChanges:FireClient(target.player, roundId, target.lifeId, {}, true)
+            update:FireClient(target.player, "plates", roundId, target.lifeId, {}, true)
         end
     end
 end
@@ -106,6 +105,10 @@ local function finish(reason)
         print("[Umbral 4] Ronda", roundId, reason,
             "aciertos", metrics.hit or 0, "rechazos", metrics.miss or 0,
             "límite", metrics.limited or 0, "malformados", metrics.invalid or 0)
+        print(("[UMBRAL PERF] round=%d ticks=%d pairChecks=%d raycasts=%d meanMs=%.3f maxMs=%.3f"):format(
+            roundId, metrics.ticks or 0, metrics.pairs or 0, metrics.rays or 0,
+            (metrics.seconds or 0) * 1000 / math.max(1, metrics.ticks or 0), (metrics.peak or 0) * 1000
+        ))
     end
     dirty = true
 end
@@ -122,7 +125,7 @@ local function die(record, killer)
         local score = scores[killer.player.UserId]
         score.kills += 1
         metrics.hit = (metrics.hit or 0) + 1
-        feedback:FireClient(killer.player, "hit", record.player.DisplayName, roundId, killer.lifeId)
+        update:FireClient(killer.player, "feedback", "hit", record.player.DisplayName, roundId, killer.lifeId)
         if score.kills >= goal then finish("goal") end
     end
     if record.humanoid and record.humanoid.Health > 0 then
@@ -256,23 +259,47 @@ local function reset()
     dirty = true
 end
 
-local function canSee(attacker, target)
-    local root, head = parts(attacker)
-    local opponent, opponentHead = parts(target)
-    return root ~= nil and opponent ~= nil
-        and Arena.inBounds(root.Position) and Arena.inBounds(opponent.Position)
-        and Geometry.eligible(root, head, opponent, opponentHead, Arena.raycast)
+local function combatPose(record)
+    local root, head = parts(record)
+    if not root or not Arena.inBounds(root.Position) then return nil end
+    return Geometry.withPlate(Geometry.pose(root, head), head.Size.Z)
 end
 
+local function canSee(attacker, target)
+    local origin, opponent = combatPose(attacker), combatPose(target)
+    return origin ~= nil and opponent ~= nil and Geometry.eligible(origin, opponent, Arena.raycast)
+end
+
+local function hasGrant(reveal, target, now)
+    return reveal and reveal.visible and reveal.lifeId == target.lifeId
+        and now - reveal.seenAt <= Config.RevealLifetime
+end
+
+local poses = {}
+local inStudio = RunService:IsStudio()
 local function sample(now)
-    for _, observer in roster do
-        if not active(observer, now) then continue end
+    debug.profilebegin("Umbral.VisibilityServer")
+    local started = if inStudio then os.clock() else 0
+    local pairChecks, rays = 0, 0
+    table.clear(poses)
+    for _, record in roster do
+        if active(record, now) then poses[record] = combatPose(record) end
+    end
+    for observer, origin in poses do
         local updates = {}
         for _, target in roster do
             if target == observer then continue end
             local id = target.player.UserId
             local reveal = observer.reveals[id]
-            if active(target, now) and canSee(observer, target) then
+            local opponent = poses[target]
+            local visible = false
+            if opponent then
+                local count
+                visible, count = Geometry.eligible(origin, opponent, Arena.raycast)
+                pairChecks += 1
+                rays += count
+            end
+            if visible then
                 if not reveal or reveal.lifeId ~= target.lifeId then
                     reveal = { lifeId = target.lifeId, samples = 0, visible = false }
                     observer.reveals[id] = reveal
@@ -289,9 +316,18 @@ local function sample(now)
             end
         end
         if #updates > 0 then
-            plateChanges:FireClient(observer.player, roundId, observer.lifeId, updates)
+            update:FireClient(observer.player, "plates", roundId, observer.lifeId, updates)
         end
     end
+    if inStudio then
+        local elapsed = os.clock() - started
+        metrics.ticks = (metrics.ticks or 0) + 1
+        metrics.pairs = (metrics.pairs or 0) + pairChecks
+        metrics.rays = (metrics.rays or 0) + rays
+        metrics.seconds = (metrics.seconds or 0) + elapsed
+        metrics.peak = math.max(metrics.peak or 0, elapsed)
+    end
+    debug.profileend()
 end
 
 local function addPlayer(player)
@@ -300,7 +336,7 @@ local function addPlayer(player)
     local record = {
         player = player, ready = false, participating = false,
         lifeId = 0, status = "lobby", respawnAt = 0, protectedUntil = 0, killerName = "",
-        reveals = {}, spawnTicket = 0, retryAt = 0, lastControl = -math.huge,
+        reveals = {}, spawnTicket = 0, retryAt = 0, lastSync = -math.huge, lastReady = -math.huge,
         bucket = {tokens = Config.RequestBurst, updated = now},
     }
     roster[player] = record
@@ -322,22 +358,27 @@ end)
 request.OnServerEvent:Connect(function(player, kind, value)
     local record = roster[player]
     local now = time()
-    if not record or now - record.lastControl < 0.24 then return end
-    record.lastControl = now
+    if not record then return end
     if kind == "sync" then
+        if now - record.lastSync < 0.24 then return end
+        record.lastSync = now
         snapshot(record, Rules.ranking(scores))
         local plates = {}
         if phase == "playing" and active(record, now) then
             for targetId, reveal in record.reveals do
                 local targetPlayer = Players:GetPlayerByUserId(targetId)
                 local target = targetPlayer and roster[targetPlayer]
-                if reveal.visible and target and reveal.lifeId == target.lifeId then
+                if active(target, now) and hasGrant(reveal, target, now) and canSee(record, target) then
                     table.insert(plates, {userId = targetId, lifeId = target.lifeId, code = target.code})
+                elseif reveal.visible then
+                    record.reveals[targetId] = nil
                 end
             end
         end
-        plateChanges:FireClient(player, roundId, record.lifeId, plates, true)
+        update:FireClient(player, "plates", roundId, record.lifeId, plates, true)
     elseif kind == "ready" and type(value) == "boolean" and not record.participating then
+        if now - record.lastReady < 0.24 then return end
+        record.lastReady = now
         if value and not record.ready then record.readyAt = now end
         record.ready = value
         dirty = true
@@ -350,6 +391,11 @@ submit.OnServerEvent:Connect(function(player, requestRound, requestLife, code)
     if not attacker or phase ~= "playing" or now >= deadline then return end
     if not Rules.consume(attacker.bucket, now, Config.RequestRate, Config.RequestBurst) then
         metrics.limited = (metrics.limited or 0) + 1
+        if requestRound == roundId and requestLife == attacker.lifeId and active(attacker, now) and Rules.validCode(code)
+            and now >= (attacker.nextLimitNotice or 0) then
+            attacker.nextLimitNotice = now + 1 / Config.RequestRate
+            update:FireClient(player, "feedback", "limited", "", roundId, attacker.lifeId)
+        end
         return
     end
     if requestRound ~= roundId or requestLife ~= attacker.lifeId or not active(attacker, now) then return end
@@ -360,12 +406,11 @@ submit.OnServerEvent:Connect(function(player, requestRound, requestLife, code)
     local target = codeIndex[code]
     local reveal = target and attacker.reveals[target.player.UserId]
     if target and target ~= attacker and active(target, now)
-        and reveal and reveal.visible and reveal.lifeId == target.lifeId
-        and now - reveal.seenAt <= Config.RevealLifetime and canSee(attacker, target) then
+        and hasGrant(reveal, target, now) and canSee(attacker, target) then
         die(target, attacker)
     else
         metrics.miss = (metrics.miss or 0) + 1
-        feedback:FireClient(player, "miss", "", roundId, attacker.lifeId)
+        update:FireClient(player, "feedback", "miss", "", roundId, attacker.lifeId)
     end
 end)
 
@@ -386,7 +431,8 @@ RunService.Heartbeat:Connect(function()
         reset()
     end
 
-    if now >= nextSample then
+    local shouldSample = now >= nextSample
+    if shouldSample then
         nextSample = now + Config.SampleInterval
         for _, record in roster do
             if record.retryAt > 0 and now >= record.retryAt then
@@ -401,8 +447,8 @@ RunService.Heartbeat:Connect(function()
                 end
             end
         end
-        if phase == "playing" then sample(now) end
     end
+    if shouldSample and phase == "playing" then sample(now) end
     if dirty then
         dirty = false
         local ranking = Rules.ranking(scores)

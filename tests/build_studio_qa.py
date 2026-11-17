@@ -22,8 +22,8 @@ with tempfile.TemporaryDirectory(prefix="umbral-qa-", dir=root) as directory:
     temporary = Path(directory)
     config = (root / "src/shared/Config.luau").read_text(encoding="utf-8")
     for old, new in (
-        ("Countdown = 10", "Countdown = 1"),
-        ("RoundDuration = 240", "RoundDuration = 20"),
+        ("Countdown = 10", "Countdown = 3"),
+        ("RoundDuration = 240", "RoundDuration = 35"),
         ("ResultsDuration = 10", "ResultsDuration = 1.2"),
         ("RespawnDelay = 6", "RespawnDelay = 1.4"),
     ):
