@@ -1,51 +1,69 @@
 # Umbral 4
 
-Prototipo multijugador de Roblox para PC. En Estación de Relevo, gana quien lea y escriba los códigos rivales antes de quedar expuesto.
+**Lee el código rival. Escríbelo antes de que te encuentren.**
 
-## Abrir y jugar
+Umbral 4 es un juego competitivo de Roblox para PC. Entre dos y ocho jugadores recorren **Estación de Relevo**, una arena industrial con rampas, pasarelas y coberturas. Cada vida tiene un código de cuatro dígitos. Consigues una baja al teclear el código de un rival mientras sigue a la vista.
 
-1. Abre `Umbral4.rbxlx` en Roblox Studio.
-2. En el selector de pruebas, elige **Servidor y clientes** y selecciona **2 clientes**. Inicia la prueba.
-3. Pulsa **Jugar** en ambas ventanas cliente. La ronda empieza después de 10 segundos.
-4. Usa WASD, ratón y Espacio. Cuando veas una placa, escribe sus cuatro dígitos con la fila superior o el teclado numérico. El cuarto dígito envía el ataque. Retroceso corrige una casilla y Esc limpia el intento al abrir el menú de Roblox. **M** abre Ajustes.
+[Descargar el lugar para Roblox Studio](https://github.com/Pochonski/umbral-4/releases/download/v0.1.0/Umbral4.rbxlx) · [Ver versiones](https://github.com/Pochonski/umbral-4/releases)
 
-**Cómo jugar** tiene una práctica individual con el código 0917. Una ronda requiere dos jugadores en cola.
+![Menú inicial de Umbral 4 desde el vestíbulo de Estación de Relevo](docs/menu-inicial.jpg)
 
-## Compilar desde el código fuente
+## Jugar en Roblox Studio
 
-Descomprime el paquete. Desde esa carpeta, con Rojo 7.7.1 disponible:
+1. Descarga **Umbral4.rbxlx** y ábrelo en [Roblox Studio](https://create.roblox.com/docs/studio/setup).
+2. En el selector de pruebas, elige **Servidor y clientes**, selecciona **2 clientes** y comienza la prueba.
+3. Pulsa **Jugar** en las dos ventanas cliente. La ronda comienza después de una cuenta regresiva de 10 segundos.
+4. Busca una placa rival y escribe sus cuatro dígitos. El último envía el ataque automáticamente.
+
+Puedes abrir **Cómo jugar** en una sesión de un solo cliente para practicar con el código `0917`.
+
+| Control | Acción |
+| --- | --- |
+| WASD, ratón y Espacio | Moverte, mirar y saltar |
+| Fila numérica o teclado numérico | Escribir un código de cuatro dígitos |
+| Retroceso | Borrar el último dígito |
+| Esc | Limpiar la entrada y abrir el menú de Roblox |
+| M | Abrir Ajustes durante la ronda |
+
+## Reglas de la arena
+
+- **La posición importa.** Las placas miran hacia el frente de su dueño. Una pared, la distancia o un giro del rival pueden hacer que pierdas la oportunidad de atacar.
+- **Cada vida de la ronda tiene un código distinto.** Tras una baja reapareces en seis segundos con un código nuevo. Durante los primeros 2,5 segundos no puedes atacar ni recibir ataques.
+- **La meta depende del tamaño de la ronda.** Se juega a 10 bajas con 2–3 jugadores, 15 con 4–5 y 25 con 6–8. A los cuatro minutos gana quien vaya en cabeza, con victoria compartida si hay empate. Quien llegue en mitad de la partida entra en la ronda siguiente.
+
+## Código y mapa
+
+Necesitas **Roblox Studio** y **[Rojo 7.7.1](https://github.com/rojo-rbx/rojo/releases/tag/v7.7.1)** para compilar el lugar desde el código fuente. El archivo de la versión se abre directamente en Studio.
 
 ```powershell
+git clone https://github.com/Pochonski/umbral-4.git
+cd umbral-4
 rojo build default.project.json -o Umbral4.rbxlx
 ```
 
-`default.project.json` incluye el mapa y genera un lugar autónomo. Para trabajar en código sobre una copia del lugar que ya contiene la arena, ejecuta `rojo serve sync.project.json` y conéctate con el plugin oficial de Rojo. Este manifiesto administra únicamente `UmbralShared`, `UmbralServer` y `UmbralClient` en sus servicios correspondientes. Aplica primero la sincronización sobre una copia desechable y revisa el diff del plugin.
+| Ruta | Contenido |
+| --- | --- |
+| [`src/server`](src/server) | Rondas, apariciones, visibilidad y validación de ataques |
+| [`src/shared`](src/shared) | Configuración, geometría de las placas y reglas |
+| [`src/client`](src/client) | Cámara, teclado, menús, interfaz de combate y efectos |
+| [`map`](map) | Arena y vestíbulo editables en Studio |
+| [`tests`](tests) | Pruebas de reglas e integración multijugador |
 
-- `src/server` controla rondas, aparición, puntuación, visibilidad y ataques.
-- `src/shared` define configuración, geometría y reglas puras.
-- `src/client` captura pulsaciones y dibuja HUD, menús, efectos y placas temporales.
-- `map/EstacionDeRelevo.rbxmx` contiene la arena editable y el vestíbulo. Exporta el modelo `Workspace.UmbralWorld` desde Studio para versionar cambios a la geometría. Los puntos de aparición están en `EstacionDeRelevo.Spawns`.
+El servidor envía cada placa solo a los jugadores con alcance, ángulo y línea de visión válidos. Cuando recibe un código, revisa esas condiciones de nuevo y aplica el límite de intentos. El cliente dibuja la placa, lee el teclado y presenta el resultado.
 
-## Reproducir la verificación
+Para iterar sobre una copia del lugar con el mapa ya cargado, ejecuta `rojo serve sync.project.json` y conéctate desde el plugin de Rojo en Studio. Ese manifiesto sincroniza las carpetas de scripts del juego. Para versionar cambios al escenario, exporta `Workspace.UmbralWorld` como `map/EstacionDeRelevo.rbxmx`.
 
-Con Luau CLI 0.747:
+## Pruebas
+
+Con [Luau CLI 0.747](https://github.com/luau-lang/luau/releases/tag/0.747) y Rojo disponibles:
 
 ```powershell
 luau tests/rules.luau
+python tests/build_studio_qa.py (Get-Command rojo).Source Umbral4-QA.rbxlx
 ```
 
-La integración de Studio usa remotos de diagnóstico incluidos solo en un lugar de prueba, con tiempos de ronda y reaparición reducidos:
+Abre el lugar QA con **Servidor y clientes** y **2 clientes**. Busca `[UMBRAL QA COMPLETE] PASS` en la salida del servidor. La copia QA acelera las rondas y contiene el canal de pruebas. El lugar descargable usa los tiempos de juego normales.
 
-```powershell
-python tests/build_studio_qa.py C:\ruta\a\rojo.exe Umbral4-QA.rbxlx
-```
+## Estado
 
-Abre el archivo QA, inicia un servidor con dos clientes y busca `[UMBRAL QA COMPLETE] PASS` en la salida del servidor. El juego de entrega se compila desde el manifiesto principal.
-
-## Decisiones registradas
-
-- La versión de referencia es un lugar separado. El original contenía Baseplate, Terrain, Camera y SpawnLocation, sin scripts propios. El mapa nuevo se generó como modelo editable.
-- El servidor envía cada código solo a observadores elegibles. Una concesión previa caduca y cada intento vuelve a validar su geometría antes de acreditar la baja. El cliente que ha recibido un código puede conservarlo en memoria, por lo que la elegibilidad del servidor sigue siendo necesaria.
-- Las rondas usan 10, 15 o 25 bajas según la cantidad inicial, con límite de 4 min. Los ajustes se guardan durante la sesión y las estadísticas corresponden a la ronda. La persistencia y otros modos quedaron fuera del prototipo.
-- Los efectos de confirmación usan un sonido incluido en Roblox, sin modelos, scripts ni licencias de pago.
-- Antes de publicar, faltan sesiones con personas reales, mediciones de red y rendimiento con 4 y 8 jugadores y una versión privada evaluada por el propietario.
+**v0.1.0 · Prototipo jugable para PC.** Pasaron siete pruebas de reglas y una integración con dos clientes de Studio. Se verificaron la cobertura, el rechazo de ataques duplicados, la reaparición con código nuevo y el reinicio del marcador. Quedan pendientes las pruebas con cuatro y ocho clientes, el ajuste de la arena con jugadores reales y las mediciones de latencia y rendimiento. La puntuación y los ajustes duran la sesión.
