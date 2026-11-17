@@ -27,7 +27,7 @@ def geometry(xml):
     physical = Counter()
     markers = Counter()
     scenery = 0
-    relief = 0
+    relief = Counter()
     for path, item in place_items(ET.fromstring(xml)):
         kind = item.attrib["class"]
         assert kind in PART_CLASSES | {"Model", "Folder", "SurfaceGui", "TextLabel", "SurfaceLight"}, (
@@ -43,7 +43,7 @@ def geometry(xml):
             assert props["CanCollide"].text == props["CanTouch"].text == "false", path
             if props["CanQuery"].text == "true":
                 assert "Transparency" not in props or float(props["Transparency"].text) < .35, path
-                relief += 1
+                relief[signature] += 1
                 continue
         if path[-1] in {"PlayableBounds", "Arrival"} or path[-2] == "Spawns":
             markers[signature] += 1
@@ -64,8 +64,14 @@ def verify(reference):
             label, sorted("/".join(key[0]) for key in old - new), sorted("/".join(key[0]) for key in new - old),
         )
         print(f"Verified {sum(old.values())} identical {label}")
+    if relief_before:
+        assert relief_before == relief_after, (
+            "visible cover relief changed", sorted("/".join(key[0]) for key in relief_before - relief_after),
+            sorted("/".join(key[0]) for key in relief_after - relief_before),
+        )
+        print(f"Verified {sum(relief_before.values())} identical relief volumes")
     print(f"Non-interactive anchored parts: {art_before} -> {art_after}")
-    print(f"Visible non-colliding relief included in raycasts: {relief_before} -> {relief_after}")
+    print(f"Visible non-colliding relief included in raycasts: {sum(relief_before.values())} -> {sum(relief_after.values())}")
 
 
 if __name__ == "__main__":

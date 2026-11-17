@@ -1,0 +1,265 @@
+{
+  "reference": "76b5ccd151be15ebb09ac1c391daeb233390a37b",
+  "studio": "0.747.0.7471481",
+  "placeSha256": "cfa4578991a981d3d4aded736cd2b14f6e7ac15eb4695c4b7b72786833f69b43",
+  "edgeRun": {
+    "status": "PASS",
+    "clients": 2,
+    "scenarios": [
+      {
+        "visible": "hit",
+        "from": "-5.5, 4.099999904632568, 3.0850000381469727",
+        "to": "5, 4.099999904632568, 3.0850000381469727",
+        "blocker": "Travesaño de latón",
+        "hidden": "miss",
+        "originalAllows": true,
+        "margin": 0.085,
+        "sector": "cell corner"
+      },
+      {
+        "visible": "hit",
+        "from": "3.200000047683716, 4.159999847412109, -22.299999237060547",
+        "to": "22.700000762939453, 4.159999847412109, -22.299999237060547",
+        "blocker": "Conductor de cobre",
+        "hidden": "miss",
+        "originalAllows": true,
+        "margin": 0.2,
+        "sector": "power doors"
+      },
+      {
+        "visible": "hit",
+        "from": "42.29999923706055, 4.150000095367432, -10.399999618530273",
+        "to": "42.29999923706055, 4.150000095367432, 8.5",
+        "blocker": "Aspa",
+        "hidden": "miss",
+        "originalAllows": true,
+        "margin": 0.2,
+        "sector": "cooling fans"
+      },
+      {
+        "visible": "hit",
+        "from": "-38, 3.740000009536743, -9.550000190734863",
+        "to": "-23, 3.740000009536743, -9.550000190734863",
+        "blocker": "Soporte",
+        "hidden": "miss",
+        "originalAllows": false,
+        "margin": -0.75,
+        "sector": "gallery column"
+      }
+    ]
+  },
+  "profileRun": {
+    "status": "PASS",
+    "clients": 2,
+    "rounds": [
+      {
+        "kills": 2,
+        "reliefQueries": false,
+        "round": 1,
+        "seconds": 28.247925996780396,
+        "relief": 389,
+        "ticks": 282,
+        "pairChecks": 360,
+        "raycasts": 680,
+        "meanMs": 0.038,
+        "maxMs": 0.096
+      },
+      {
+        "kills": 2,
+        "reliefQueries": true,
+        "round": 2,
+        "seconds": 28.215811014175415,
+        "relief": 389,
+        "ticks": 285,
+        "pairChecks": 364,
+        "raycasts": 684,
+        "meanMs": 0.042,
+        "maxMs": 0.111
+      },
+      {
+        "kills": 2,
+        "reliefQueries": true,
+        "round": 3,
+        "seconds": 28.24955105781555,
+        "relief": 389,
+        "ticks": 282,
+        "pairChecks": 356,
+        "raycasts": 672,
+        "meanMs": 0.043,
+        "maxMs": 0.206
+      },
+      {
+        "kills": 2,
+        "reliefQueries": false,
+        "round": 4,
+        "seconds": 28.215662956237793,
+        "relief": 389,
+        "ticks": 283,
+        "pairChecks": 362,
+        "raycasts": 680,
+        "meanMs": 0.039,
+        "maxMs": 0.222
+      }
+    ]
+  },
+  "render": {
+    "before": {
+      "720p": {
+        "viewport": "1280, 720",
+        "device": "1280, 720",
+        "panels": {
+          "walkway": {
+            "p50": 16.5925994515419,
+            "cpuP95": 5.89489983394742,
+            "p95": 18.069099634885788,
+            "gpuP95": 1.096511958166957,
+            "samples": 150
+          },
+          "gallery": {
+            "p50": 16.703199595212936,
+            "cpuP95": 6.300600245594978,
+            "p95": 17.84360036253929,
+            "gpuP95": 1.2290560407564044,
+            "samples": 150
+          },
+          "patio": {
+            "p50": 16.67100004851818,
+            "cpuP95": 5.866099614650011,
+            "p95": 18.14810000360012,
+            "gpuP95": 1.126559916883707,
+            "samples": 150
+          }
+        },
+        "quality": "Level10"
+      },
+      "1080p": {
+        "viewport": "1920, 1080",
+        "device": "1920, 1080",
+        "panels": {
+          "walkway": {
+            "p50": 16.676699742674828,
+            "cpuP95": 5.567099899053574,
+            "p95": 17.566600814461708,
+            "gpuP95": 0.9777920786291361,
+            "samples": 150
+          },
+          "gallery": {
+            "p50": 16.65719971060753,
+            "cpuP95": 6.284900009632111,
+            "p95": 18.058599904179573,
+            "gpuP95": 1.203071908093989,
+            "samples": 150
+          },
+          "patio": {
+            "p50": 16.672100871801376,
+            "cpuP95": 5.916699767112732,
+            "p95": 18.26230064034462,
+            "gpuP95": 1.230144058354199,
+            "samples": 150
+          }
+        },
+        "quality": "Level10"
+      }
+    },
+    "after": {
+      "720p": {
+        "viewport": "1280, 720",
+        "device": "1280, 720",
+        "panels": {
+          "walkway": {
+            "p50": 16.642499715089798,
+            "cpuP95": 5.792899988591671,
+            "p95": 17.812499776482582,
+            "gpuP95": 1.1686719954013824,
+            "samples": 150
+          },
+          "gallery": {
+            "p50": 16.5948998183012,
+            "cpuP95": 5.6906999088823795,
+            "p95": 18.01219955086708,
+            "gpuP95": 1.1438720393925905,
+            "samples": 150
+          },
+          "patio": {
+            "p50": 16.672400757670403,
+            "cpuP95": 5.459200125187635,
+            "p95": 17.654700204730034,
+            "gpuP95": 1.1114239459857345,
+            "samples": 150
+          }
+        },
+        "quality": "Level10"
+      },
+      "1080p": {
+        "viewport": "1920, 1080",
+        "device": "1920, 1080",
+        "panels": {
+          "walkway": {
+            "p50": 16.682500019669533,
+            "cpuP95": 5.699200090020895,
+            "p95": 17.756300047039986,
+            "gpuP95": 1.3030079426243901,
+            "samples": 150
+          },
+          "gallery": {
+            "p50": 16.624100506305695,
+            "cpuP95": 5.847199819982052,
+            "p95": 18.063899129629135,
+            "gpuP95": 1.3369600055739284,
+            "samples": 150
+          },
+          "patio": {
+            "p50": 16.72700047492981,
+            "cpuP95": 5.572800058871508,
+            "p95": 17.974700778722763,
+            "gpuP95": 1.3505920069292188,
+            "samples": 150
+          }
+        },
+        "quality": "Level10"
+      }
+    }
+  },
+  "occlusion": {
+    "rays": 8891,
+    "queryOnly": 0,
+    "relief": 389,
+    "maxReliefOverhang": 0.25099945068359375,
+    "blockers": [],
+    "examples": [],
+    "visualOnly": 0
+  },
+  "navigation": {
+    "sight": {
+      "behindCover": false,
+      "frontal": true,
+      "rear": false
+    },
+    "paths": {
+      "west gallery": 5,
+      "ramp 31/-31": 14,
+      "ramp -31/-31": 13,
+      "north corridor": 13,
+      "ramp 31/31": 13,
+      "south corridor": 13,
+      "ramp -31/31": 11,
+      "east gallery": 5
+    },
+    "closeToBeacon": 2,
+    "spawns": 12
+  },
+  "spawn03": {
+    "+Z": {
+      "travelled": 4.21,
+      "remaining": 0.88
+    },
+    "toward beacon": {
+      "travelled": 4.46,
+      "remaining": 0.75
+    },
+    "+X": {
+      "travelled": 4.19,
+      "remaining": 0.89
+    }
+  }
+}

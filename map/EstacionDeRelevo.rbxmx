@@ -3925,7 +3925,7 @@
             <Y>4.34</Y>
             <Z>2.3</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">9870227</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -3962,7 +3962,7 @@
             <Y>4.34</Y>
             <Z>2.3</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">9870227</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -3999,7 +3999,7 @@
             <Y>4.34</Y>
             <Z>2.2</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">10264213</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4036,7 +4036,7 @@
             <Y>4.34</Y>
             <Z>2.2</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">10855834</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4073,7 +4073,7 @@
             <Y>4.34</Y>
             <Z>3</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">9870227</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4110,7 +4110,7 @@
             <Y>4.34</Y>
             <Z>3</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">9870227</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4147,7 +4147,7 @@
             <Y>4.34</Y>
             <Z>6</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">10264213</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4184,7 +4184,7 @@
             <Y>4.34</Y>
             <Z>6</Z>
           </Vector3>
-          <Color3uint8 name="Color3uint8">10527380</Color3uint8>
+          <Color3uint8 name="Color3uint8">10855834</Color3uint8>
           <token name="Material">816</token>
           <token name="BottomSurface">0</token>
           <token name="TopSurface">0</token>
@@ -4669,7 +4669,7 @@
               <Y>2.3</Y>
               <Z>0.19</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9017239</Color3uint8>
+            <Color3uint8 name="Color3uint8">9279122</Color3uint8>
             <token name="Material">816</token>
             <token name="TopSurface">0</token>
             <token name="BottomSurface">0</token>
@@ -5398,7 +5398,7 @@
               <Y>2.3</Y>
               <Z>0.19</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9017239</Color3uint8>
+            <Color3uint8 name="Color3uint8">9279122</Color3uint8>
             <token name="Material">816</token>
             <token name="TopSurface">0</token>
             <token name="BottomSurface">0</token>
@@ -6127,7 +6127,7 @@
               <Y>2.36</Y>
               <Z>88</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9017239</Color3uint8>
+            <Color3uint8 name="Color3uint8">9279122</Color3uint8>
             <token name="Material">816</token>
             <token name="TopSurface">0</token>
             <token name="BottomSurface">0</token>
@@ -6597,7 +6597,7 @@
               <Y>2.36</Y>
               <Z>88</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9017239</Color3uint8>
+            <Color3uint8 name="Color3uint8">9279122</Color3uint8>
             <token name="Material">816</token>
             <token name="TopSurface">0</token>
             <token name="BottomSurface">0</token>
@@ -7072,7 +7072,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">8949639</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7103,7 +7103,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7134,7 +7134,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9870225</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7165,7 +7165,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7196,7 +7196,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">8949639</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7227,7 +7227,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7258,7 +7258,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7289,7 +7289,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7320,7 +7320,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7351,7 +7351,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7382,7 +7382,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9870225</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7413,7 +7413,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7444,7 +7444,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">8949639</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7475,7 +7475,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7506,7 +7506,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9870225</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7537,7 +7537,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7568,7 +7568,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7599,7 +7599,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7630,7 +7630,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7661,7 +7661,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7692,7 +7692,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">8949639</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7723,7 +7723,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7754,7 +7754,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9870225</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7785,7 +7785,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7816,7 +7816,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">8949639</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7847,7 +7847,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7878,7 +7878,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9081227</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7909,7 +7909,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">9541004</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7940,7 +7940,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9541260</Color3uint8>
+            <Color3uint8 name="Color3uint8">9738641</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -7971,7 +7971,7 @@
               <Y>0.012</Y>
               <Z>17.94</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">9147277</Color3uint8>
+            <Color3uint8 name="Color3uint8">8884105</Color3uint8>
             <token name="Material">816</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -10177,7 +10177,7 @@
               <Y>3.79</Y>
               <Z>0.096</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">3098957</Color3uint8>
+            <Color3uint8 name="Color3uint8">3754312</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -10239,8 +10239,8 @@
               <Y>0.31</Y>
               <Z>0.12</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">12487483</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">9792568</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -10457,8 +10457,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -10488,7 +10488,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10520,7 +10520,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10552,7 +10552,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10584,7 +10584,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10616,7 +10616,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10648,8 +10648,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -10679,7 +10679,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10711,7 +10711,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10743,7 +10743,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10775,7 +10775,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10807,7 +10807,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10839,8 +10839,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -10870,7 +10870,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10902,7 +10902,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10934,7 +10934,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10966,7 +10966,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -10998,7 +10998,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11185,7 +11185,7 @@
               <Y>3.79</Y>
               <Z>0.096</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">3098957</Color3uint8>
+            <Color3uint8 name="Color3uint8">3754312</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -11247,8 +11247,8 @@
               <Y>0.31</Y>
               <Z>0.12</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">12487483</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">9792568</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -11465,8 +11465,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -11496,7 +11496,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11528,7 +11528,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11560,7 +11560,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11592,7 +11592,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11624,7 +11624,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11656,8 +11656,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -11687,7 +11687,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11719,7 +11719,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11751,7 +11751,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11783,7 +11783,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11815,7 +11815,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11847,8 +11847,8 @@
               <Y>1.52</Y>
               <Z>0.075</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">4612452</Color3uint8>
-            <token name="Material">1040</token>
+            <Color3uint8 name="Color3uint8">3227197</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -11878,7 +11878,7 @@
               <Y>0.2</Y>
               <Z>0.2</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">11165497</Color3uint8>
+            <Color3uint8 name="Color3uint8">11364414</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11910,7 +11910,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11942,7 +11942,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -11974,7 +11974,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -12006,7 +12006,7 @@
               <Y>0.29</Y>
               <Z>0.29</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">7502708</Color3uint8>
             <token name="Material">1088</token>
             <token name="shape">2</token>
             <bool name="Anchored">true</bool>
@@ -21164,8 +21164,8 @@
               <Y>0.91</Y>
               <Z>27.91</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">2633006</Color3uint8>
-            <token name="Material">1088</token>
+            <Color3uint8 name="Color3uint8">3556421</Color3uint8>
+            <token name="Material">272</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -21195,7 +21195,7 @@
               <Y>0.18</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -21226,7 +21226,7 @@
               <Y>0.15</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -21511,8 +21511,8 @@
               <Y>0.91</Y>
               <Z>27.91</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">2633006</Color3uint8>
-            <token name="Material">1088</token>
+            <Color3uint8 name="Color3uint8">3556421</Color3uint8>
+            <token name="Material">272</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -21542,7 +21542,7 @@
               <Y>0.18</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -21573,7 +21573,7 @@
               <Y>0.15</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -22800,14 +22800,14 @@
             <Properties>
               <string name="Name">Luz de mantenimiento</string>
               <token name="Face">4</token>
-              <float name="Brightness">0.73</float>
+              <float name="Brightness">0.68</float>
               <float name="Range">12</float>
               <float name="Angle">108</float>
               <bool name="Shadows">false</bool>
               <Color3 name="Color">
-                <R>1.0</R>
-                <G>0.86</G>
-                <B>0.68</B>
+                <R>1</R>
+                <G>0.9</G>
+                <B>0.75</B>
               </Color3>
             </Properties>
           </Item>
@@ -22834,8 +22834,8 @@
               <Y>0.021</Y>
               <Z>4.3</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">3098957</Color3uint8>
-            <token name="Material">1056</token>
+            <Color3uint8 name="Color3uint8">3359557</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -23063,14 +23063,14 @@
             <Properties>
               <string name="Name">Luz de mantenimiento</string>
               <token name="Face">4</token>
-              <float name="Brightness">0.73</float>
+              <float name="Brightness">0.68</float>
               <float name="Range">12</float>
               <float name="Angle">108</float>
               <bool name="Shadows">false</bool>
               <Color3 name="Color">
-                <R>1.0</R>
-                <G>0.86</G>
-                <B>0.68</B>
+                <R>1</R>
+                <G>0.9</G>
+                <B>0.75</B>
               </Color3>
             </Properties>
           </Item>
@@ -23097,8 +23097,8 @@
               <Y>0.91</Y>
               <Z>27.91</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">2633006</Color3uint8>
-            <token name="Material">1088</token>
+            <Color3uint8 name="Color3uint8">3556421</Color3uint8>
+            <token name="Material">272</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -23128,7 +23128,7 @@
               <Y>0.18</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -23159,7 +23159,7 @@
               <Y>0.15</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -23444,8 +23444,8 @@
               <Y>0.91</Y>
               <Z>27.91</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">2633006</Color3uint8>
-            <token name="Material">1088</token>
+            <Color3uint8 name="Color3uint8">3556421</Color3uint8>
+            <token name="Material">272</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -23475,7 +23475,7 @@
               <Y>0.18</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -23506,7 +23506,7 @@
               <Y>0.15</Y>
               <Z>27.89</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">7109497</Color3uint8>
+            <Color3uint8 name="Color3uint8">6648177</Color3uint8>
             <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
@@ -24733,14 +24733,14 @@
             <Properties>
               <string name="Name">Luz de mantenimiento</string>
               <token name="Face">4</token>
-              <float name="Brightness">0.64</float>
+              <float name="Brightness">0.59</float>
               <float name="Range">12</float>
               <float name="Angle">108</float>
               <bool name="Shadows">false</bool>
               <Color3 name="Color">
-                <R>0.78</R>
-                <G>0.95</G>
-                <B>1.0</B>
+                <R>0.84</R>
+                <G>0.97</G>
+                <B>1</B>
               </Color3>
             </Properties>
           </Item>
@@ -24767,8 +24767,8 @@
               <Y>0.021</Y>
               <Z>4.3</Z>
             </Vector3>
-            <Color3uint8 name="Color3uint8">3098957</Color3uint8>
-            <token name="Material">1056</token>
+            <Color3uint8 name="Color3uint8">3359557</Color3uint8>
+            <token name="Material">1088</token>
             <bool name="Anchored">true</bool>
             <bool name="CanCollide">false</bool>
             <bool name="CanTouch">false</bool>
@@ -24996,14 +24996,14 @@
             <Properties>
               <string name="Name">Luz de mantenimiento</string>
               <token name="Face">4</token>
-              <float name="Brightness">0.64</float>
+              <float name="Brightness">0.59</float>
               <float name="Range">12</float>
               <float name="Angle">108</float>
               <bool name="Shadows">false</bool>
               <Color3 name="Color">
-                <R>0.78</R>
-                <G>0.95</G>
-                <B>1.0</B>
+                <R>0.84</R>
+                <G>0.97</G>
+                <B>1</B>
               </Color3>
             </Properties>
           </Item>
