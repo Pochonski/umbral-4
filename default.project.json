@@ -12,39 +12,40 @@
     "Lighting": {
       "$className": "Lighting",
       "$properties": {
-        "ClockTime": 15.65,
+        "ClockTime": 16.08,
         "GeographicLatitude": 27,
-        "Brightness": 2.65,
-        "ExposureCompensation": 0.035,
+        "Brightness": 2.60,
+        "ExposureCompensation": 0.025,
         "GlobalShadows": true,
-        "EnvironmentDiffuseScale": 0.50,
-        "EnvironmentSpecularScale": 0.28,
-        "Ambient": [0.39, 0.43, 0.47],
-        "OutdoorAmbient": [0.60, 0.63, 0.66]
+        "EnvironmentDiffuseScale": 0.57,
+        "EnvironmentSpecularScale": 0.35,
+        "Ambient": [0.44, 0.46, 0.49],
+        "OutdoorAmbient": [0.58, 0.61, 0.64],
+        "ColorShift_Top": [0.09, 0.042, 0.015]
       },
       "Atmosfera del recinto": {
         "$className": "Atmosphere",
         "$properties": {
-          "Density": 0.17,
+          "Density": 0.14,
           "Offset": 0.12,
-          "Haze": 0.65,
+          "Haze": 0.52,
           "Glare": 0,
-          "Color": [0.78, 0.84, 0.89],
-          "Decay": [0.51, 0.59, 0.63]
+          "Color": [0.82, 0.86, 0.89],
+          "Decay": [0.60, 0.56, 0.49]
         }
       },
       "Color de tarde": {
         "$className": "ColorCorrectionEffect",
         "$properties": {
-          "Brightness": 0.01,
-          "Contrast": 0.035,
-          "Saturation": -0.055,
-          "TintColor": [1.0, 0.981, 0.955]
+          "Brightness": 0.006,
+          "Contrast": 0.046,
+          "Saturation": -0.038,
+          "TintColor": [1.0, 0.985, 0.96]
         }
       },
       "Reflejo de luminarias": {
         "$className": "BloomEffect",
-        "$properties": {"Intensity": 0.08, "Size": 16, "Threshold": 1.85}
+        "$properties": {"Intensity": 0.055, "Size": 14, "Threshold": 1.95}
       }
     },
     "ReplicatedStorage": {
