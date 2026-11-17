@@ -12,13 +12,40 @@
     "Lighting": {
       "$className": "Lighting",
       "$properties": {
-        "ClockTime": 14.2,
-        "Brightness": 2.4,
+        "ClockTime": 16.08,
+        "GeographicLatitude": 27,
+        "Brightness": 2.60,
+        "ExposureCompensation": 0.025,
         "GlobalShadows": true,
-        "EnvironmentDiffuseScale": 0.45,
-        "EnvironmentSpecularScale": 0.35,
-        "Ambient": [0.32, 0.38, 0.45],
-        "OutdoorAmbient": [0.53, 0.59, 0.64]
+        "EnvironmentDiffuseScale": 0.59,
+        "EnvironmentSpecularScale": 0.28,
+        "Ambient": [0.45, 0.465, 0.49],
+        "OutdoorAmbient": [0.58, 0.61, 0.64],
+        "ColorShift_Top": [0.09, 0.042, 0.015]
+      },
+      "Atmosfera del recinto": {
+        "$className": "Atmosphere",
+        "$properties": {
+          "Density": 0.14,
+          "Offset": 0.12,
+          "Haze": 0.52,
+          "Glare": 0,
+          "Color": [0.82, 0.86, 0.89],
+          "Decay": [0.60, 0.56, 0.49]
+        }
+      },
+      "Color de tarde": {
+        "$className": "ColorCorrectionEffect",
+        "$properties": {
+          "Brightness": 0.006,
+          "Contrast": 0.046,
+          "Saturation": -0.038,
+          "TintColor": [1.0, 0.985, 0.96]
+        }
+      },
+      "Reflejo de luminarias": {
+        "$className": "BloomEffect",
+        "$properties": {"Intensity": 0.055, "Size": 14, "Threshold": 1.95}
       }
     },
     "ReplicatedStorage": {
