@@ -6,7 +6,9 @@ Umbral 4 es un juego competitivo de Roblox para PC. Entre dos y ocho jugadores r
 
 [Descargar el lugar para Roblox Studio](https://github.com/Pochonski/umbral-4/releases/download/v0.1.0/Umbral4.rbxlx) · [Ver versiones](https://github.com/Pochonski/umbral-4/releases)
 
-![Menú inicial de Umbral 4 desde el vestíbulo de Estación de Relevo](docs/menu-inicial.jpg)
+![Terminal industrial de Umbral 4 en Roblox Studio a 1080p](docs/images/terminal-despues-1080.jpg)
+
+Esta rama presenta el nuevo menú **Terminal industrial**, basado en el pulido de Estación de Relevo (`2909dd1`). El enlace de descarga anterior corresponde a v0.1.0. Para obtener esta candidata, compila esta rama con Rojo. Consulta el [informe y las comparaciones del menú](docs/terminal-industrial.md), con las pruebas realizadas y las pendientes.
 
 ## Jugar en Roblox Studio
 

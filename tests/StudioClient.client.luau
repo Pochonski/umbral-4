@@ -13,12 +13,14 @@ local bridge = ReplicatedStorage:WaitForChild("UmbralQABridge")
 local hitStarted
 local frameSamples = {}
 local playing = false
+local latestState
 RunService.PreRender:Connect(function(delta)
     if playing and #frameSamples < 600 then table.insert(frameSamples, delta * 1000) end
 end)
 network.Update.OnClientEvent:Connect(function(kind, ...)
     if kind == "state" then
         local state = ...
+        latestState = state
         playing = state.phase == "playing" and state.participating
         bridge:FireServer("state", state)
     elseif kind == "plates" then
@@ -35,7 +37,49 @@ network.Update.OnClientEvent:Connect(function(kind, ...)
 end)
 
 local gui = player.PlayerGui:WaitForChild("Umbral4", 12)
-assert(gui and #gui:GetChildren() == 5, "Client UI failed to initialize")
+assert(gui and gui:FindFirstChild("HUD") and gui:FindFirstChild("Panel")
+    and player.PlayerGui:WaitForChild("UmbralTerminal", 12), "Client UI failed to initialize")
+
+local function clickMenuButton(button)
+    local virtual = assert(UserInputService:CreateVirtualInput())
+    local position = button.AbsolutePosition + button.AbsoluteSize/2 + GuiService:GetGuiInset()
+    virtual:SendMousePosition(position)
+    virtual:SendMouseButton(position, Enum.UserInputType.MouseButton1, true, 0)
+    task.wait(.02)
+    virtual:SendMouseButton(position, Enum.UserInputType.MouseButton1, false, 0)
+end
+
+local function menuProbe()
+    local terminal = player.PlayerGui.UmbralTerminal.ZonaSegura.Terminal
+    local button = terminal.Jugar
+    assert(button.Text == "Jugar")
+    clickMenuButton(button)
+    clickMenuButton(button)
+    clickMenuButton(button)
+    task.wait(.5)
+    assert(latestState.ready and button.Text == "Salir de la cola", "Rapid clicks changed membership twice")
+    clickMenuButton(button)
+    task.wait(.5)
+    assert(not latestState.ready and button.Text == "Jugar", "Unready button failed")
+    clickMenuButton(terminal.ComoJugar)
+    task.wait(.1)
+    assert(gui.Panel.Visible)
+    -- Leave practice open to exercise Back before the production Play button.
+    bridge:FireServer("menuProbe", true)
+end
+
+network.Update.OnClientEvent:Connect(function(kind, state)
+    if kind ~= "state" then return end
+    task.defer(function()
+        local terminal = player.PlayerGui.UmbralTerminal
+        local playingNow = state.phase == "playing" and state.participating
+        if terminal.Enabled ~= (not playingNow and state.phase ~= "results")
+            or gui.HUD.Visible ~= (playingNow and state.status == "alive")
+            or gui.Resultados.Visible ~= (state.phase == "results") then
+            bridge:FireServer("menuProbe", false, "UI visibility disagrees with server state "..state.phase)
+        end
+    end)
+end)
 
 local keyNames = {"Zero","One","Two","Three","Four","Five","Six","Seven","Eight","Nine"}
 
@@ -194,7 +238,18 @@ local function virtualKeyboard(code)
 end
 
 bridge.OnClientEvent:Connect(function(action, round, life, code, at, aimAt)
-    if action == "ready" then
+    if action == "menuProbe" then
+        local ok, reason = pcall(menuProbe)
+        if not ok then bridge:FireServer("menuProbe", false, tostring(reason)) end
+    elseif action == "readyButton" then
+        if gui.Panel.Visible then
+            for _, item in gui.Panel:GetDescendants() do
+                if item:IsA("TextButton") and item.Text == "Volver" then clickMenuButton(item); break end
+            end
+            task.wait(.15)
+        end
+        clickMenuButton(player.PlayerGui.UmbralTerminal.ZonaSegura.Terminal.Jugar)
+    elseif action == "ready" then
         network.Request:FireServer("sync")
         network.Request:FireServer("ready", true)
     elseif action == "attack" then

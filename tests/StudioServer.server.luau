@@ -38,6 +38,8 @@ bridge.OnServerEvent:Connect(function(player, action, first, second)
     elseif action == "pong" and pingSent[first] then
         table.insert(pingSamples, (os.clock() - pingSent[first]) * 1000)
         pingSent[first] = nil
+    elseif action == "menuProbe" then
+        peer.menuProbe = {ok=first,detail=second}
     end
 end)
 bridge.Parent = ReplicatedStorage
@@ -76,6 +78,8 @@ end
 local function run()
     local args
     pcall(function() args = StudioTestService:GetTestArgs() end)
+    local engineTest = args ~= nil
+    if args == nil and workspace:GetAttribute("UmbralMenuQA") then args = {clients=2,menuControls=true} end
     local expected = if type(args) == "table" then args.clients else (if type(args) == "number" then args else 2)
     local group = await("clients to initialize", function()
         local ready = {}
@@ -84,7 +88,17 @@ local function run()
     end, 90)
     table.sort(group, function(a, b) return a.player.UserId < b.player.UserId end)
     local attacker, target = group[1], group[2]
-    for _, peer in group do bridge:FireClient(peer.player, "ready") end
+    if type(args) == "table" and args.menuControls then
+        for _, peer in group do
+            bridge:FireClient(peer.player,"menuProbe")
+            local probe = await("menu button probe", function() return peer.menuProbe end)
+            assert(probe.ok, probe.detail)
+        end
+        pass("both clients ready/unready by button, rapid clicks are debounced, practice opens")
+    end
+    for _, peer in group do
+        bridge:FireClient(peer.player, if type(args)=="table" and args.menuControls then "readyButton" else "ready")
+    end
     await("all ready players enrolled with live characters", function()
         for _, peer in group do
             if not peer.state or peer.state.phase ~= "playing" or peer.state.status ~= "alive" then return end
@@ -93,7 +107,8 @@ local function run()
     end, 30)
     assert(#attacker.state.scores == expected)
     assert(attacker.state.goal == (if expected < 4 then 10 elseif expected < 6 then 15 else 25))
-    pass("ready immediately after sync is accepted for all participants")
+    pass(if type(args)=="table" and args.menuControls then "production Play buttons enroll both participants"
+        else "ready immediately after sync is accepted for all participants")
     pass("lobby, round, score and goal with " .. expected .. " real Studio client processes")
 
     task.spawn(function()
@@ -264,6 +279,10 @@ local function run()
     await("second round", function() return attacker.state.phase == "playing" and attacker.state.roundId == 2 end)
     assert(kills(attacker) == 0)
     pass("round timeout declares the leader and next round resets scores")
+    if type(args)=="table" and args.menuControls then
+        for _,peer in group do assert(peer.menuProbe.ok, peer.menuProbe.detail) end
+        pass("terminal, HUD and results visibility follow server state through two rounds")
+    end
 
     local newcomer
     if type(args) == "table" and args.lateJoin then
@@ -283,7 +302,7 @@ local function run()
     end
 
     local leaveRequested = os.clock()
-    if args == nil then
+    if not engineTest then
         attacker.player:Kick("Umbral QA controlled disconnect")
     else
         bridge:FireClient(attacker.player, "leave")

@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-17T22:22:02.808858+00:00",
+  "baseCommit": "2909dd1789c8b0b0ecb362729eabb77ad83d8e1d",
+  "luauVersion": "0.747",
+  "rojoVersion": "7.7.1",
+  "compileAllSrcAndTests": "PASS",
+  "pureModuleAnalysis": "PASS",
+  "rulesTests": 7,
+  "inputTests": 4,
+  "productionScripts": 9,
+  "spawnMarkers": 12,
+  "qaInstancesInProduction": 0,
+  "twoBuildsIdentical": true,
+  "productionSha256": "c258d4136b169800f2b9f52a43be460a4b2bcab97a44a0e44fd7c3ab76de326e",
+  "mapUnchangedFromBase": true,
+  "mapWorktreeSha256": "783dfb8bac43d2cd1db7cf7868674f51f65c58efd1026dd04017f3cfa2906ef5",
+  "serverSharedMapAndManifestsUnchanged": true,
+  "twoClientMenuIntegration": "PENDING",
+  "performanceComparison": "PENDING",
+  "humanPlaytest": "PENDING"
+}

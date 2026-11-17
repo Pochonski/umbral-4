@@ -29,7 +29,8 @@ local receiptUntil = 0
 local sensitivity, volume, reduced = 1, .65, false
 local lastPlayClick = -math.huge
 local lastViewport
-local vista = CFrame.lookAt(Vector3.new(69, 33, 57), Vector3.new(9, 1.3, -6))
+local vistaTarget = Vector3.new(-6, 5, -11)
+local vista = CFrame.lookAt(Vector3.new(37, 13, 39), vistaTarget)
 local configuredMinZoom = player.CameraMinZoomDistance
 local overlayZoom = 7
 
@@ -88,7 +89,7 @@ local function refreshCamera()
     if camera and overview and camera.CameraType ~= Enum.CameraType.Scriptable then
         camera.CameraType = Enum.CameraType.Scriptable
         camera.CFrame = vista
-        camera.Focus = CFrame.new(9, 1.3, -6)
+        camera.Focus = CFrame.new(vistaTarget)
     elseif camera and not overview and camera.CameraType == Enum.CameraType.Scriptable then
         camera.CameraType = Enum.CameraType.Custom
         local character = player.Character
@@ -297,6 +298,7 @@ GuiService.MenuOpened:Connect(function()
 end)
 GuiService.MenuClosed:Connect(refreshCamera)
 workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(refreshCamera)
+GuiService:GetPropertyChangedSignal("TopbarInset"):Connect(function() lastViewport = nil end)
 
 local function renderPlates(camera)
     if not next(plates) then return end
