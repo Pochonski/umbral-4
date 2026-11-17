@@ -10,10 +10,11 @@ local shared = ReplicatedStorage:WaitForChild("UmbralShared")
 local Config = require(shared.Config)
 local Geometry = require(shared.Geometry)
 local Interface = require(script.Parent.Interface)
+local InputBuffer = require(script.Parent.InputBuffer)
 local player = Players.LocalPlayer
 local view = Interface.create(player:WaitForChild("PlayerGui"))
 local network = ReplicatedStorage:WaitForChild("UmbralNetwork")
-local map = workspace:WaitForChild("UmbralWorld"):WaitForChild("EstacionDeRelevo")
+local map = workspace:WaitForChild("UmbralWorld"):WaitForChild(Config.ArenaModel)
 local cover = Geometry.coverParams(map)
 
 local state = {
@@ -22,12 +23,15 @@ local state = {
     respawnAt = 0, protectedUntil = 0, killerName = "", scores = {}, winners = {},
 }
 local receivedState = false
-local plates, upcoming = {}, {}
-local digits, lastDigit, practiceMessage = "", 0, nil
+local plates = {}
+local inputBuffer = InputBuffer.new(Config.InputTimeout)
+local receiptUntil = 0
 local sensitivity, volume, reduced = 1, .65, false
 local lastPlayClick = -math.huge
 local lastViewport
 local vista = CFrame.lookAt(Vector3.new(69, 33, 57), Vector3.new(9, 1.3, -6))
+local configuredMinZoom = player.CameraMinZoomDistance
+local overlayZoom = 7
 
 local plateFolder = Instance.new("Folder")
 plateFolder.Name = "UmbralLocalPlates"
@@ -58,7 +62,8 @@ local function supported()
 end
 
 local function clearInput()
-    digits, lastDigit, practiceMessage = "", 0, nil
+    InputBuffer.clear(inputBuffer)
+    receiptUntil = 0
     view.digits("")
     view.practice("")
 end
@@ -68,12 +73,15 @@ local function refreshCamera()
     local overview = state.phase ~= "playing" or not state.participating
     local aim = state.phase == "playing" and state.participating and state.status == "alive"
         and view.modal == nil and not GuiService.MenuIsOpen
+    -- Keep the cursor free while the in-round overlay is open, then restore the configured minimum.
+    local minZoom = if not overview and not aim then math.min(
+        player.CameraMaxZoomDistance, math.max(configuredMinZoom, overlayZoom)
+    ) else configuredMinZoom
+    if player.CameraMinZoomDistance ~= minZoom then player.CameraMinZoomDistance = minZoom end
     local mode = if aim then Enum.CameraMode.LockFirstPerson else Enum.CameraMode.Classic
     if player.CameraMode ~= mode then
         player.CameraMode = mode
         if not aim then
-            player.CameraMinZoomDistance = 7
-            player.CameraMinZoomDistance = .5
             UserInputService.MouseBehavior = Enum.MouseBehavior.Default
         end
     end
@@ -151,7 +159,7 @@ local function applyPlates(updates, reset)
     end
 end
 
-network.State.OnClientEvent:Connect(function(nextState)
+local function onState(nextState)
     receivedState = true
     if state.roundId ~= nextState.roundId or state.lifeId ~= nextState.lifeId
         or state.phase ~= nextState.phase or state.status ~= nextState.status then
@@ -161,34 +169,33 @@ network.State.OnClientEvent:Connect(function(nextState)
         if view.modal == "how" then view.showModal(nil) end
     end
     state = nextState
-    if state.status == "alive" and state.phase == "playing" then
-        for _, entry in upcoming do
-            if entry.roundId == state.roundId and entry.lifeId == state.lifeId then
-                applyPlates(entry.updates, entry.reset)
-            end
-        end
-    end
-    table.clear(upcoming)
     view.state(state, player.UserId, supported())
     refreshCamera()
-end)
+end
 
-network.Plates.OnClientEvent:Connect(function(roundId, lifeId, updates, reset)
-    if state.roundId == roundId and state.lifeId == lifeId then
-        if state.phase == "playing" and state.status == "alive" then applyPlates(updates, reset) end
-    elseif roundId > state.roundId or (roundId == state.roundId and lifeId > state.lifeId) then
-        table.insert(upcoming, {roundId = roundId, lifeId = lifeId, updates = updates, reset = reset})
-    end
-end)
-
-network.Feedback.OnClientEvent:Connect(function(kind, rival, roundId, lifeId)
+local function onFeedback(kind, rival, roundId, lifeId)
     if state.roundId ~= roundId or state.lifeId ~= lifeId then return end
     if kind == "hit" then
         view.notify("✓  BAJA  ·  " .. rival, true)
         playSound(confirmed, .82)
+    elseif kind == "limited" then
+        view.notify("ESPERA ANTES DE REINTENTAR", false)
     else
         view.notify("INTENTO FALLIDO", false)
         playSound(miss, .25)
+    end
+end
+
+network.Update.OnClientEvent:Connect(function(kind, ...)
+    if kind == "state" then
+        onState(...)
+    elseif kind == "plates" then
+        local roundId, lifeId, updates, reset = ...
+        if state.roundId == roundId and state.lifeId == lifeId and state.phase == "playing" and state.status == "alive" then
+            applyPlates(updates, reset)
+        end
+    elseif kind == "feedback" then
+        onFeedback(...)
     end
 end)
 
@@ -237,14 +244,13 @@ for i, name in { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", 
 end
 
 local down = {}
-local function keyPressed(input, processed)
+local function keyPressed(input)
     local key = input.KeyCode
     if key == Enum.KeyCode.Escape then
         clearInput()
         return
     end
     if GuiService.MenuIsOpen or UserInputService:GetFocusedTextBox() then return end
-    if processed and not numberKeys[key] and key ~= Enum.KeyCode.Backspace then return end
     if key == Enum.KeyCode.M and view.modal ~= "how" then
         openModal(if view.modal then nil else "settings")
         return
@@ -252,29 +258,30 @@ local function keyPressed(input, processed)
     local practice = view.modal == "how"
     if not practice and (view.modal or state.phase ~= "playing" or not state.participating
         or state.status ~= "alive" or workspace:GetServerTimeNow() < state.protectedUntil) then return end
-    if key == Enum.KeyCode.Backspace then
-        digits = digits:sub(1, -2)
-        lastDigit = os.clock()
-    elseif numberKeys[key] and not down[key] then
-        down[key] = true
-        if #digits == 4 then digits = "" end
-        digits ..= numberKeys[key]
-        lastDigit, practiceMessage = os.clock(), nil
-        if #digits == 4 then
-            if practice then
-                practiceMessage = if digits == "0917" then "✓  Código correcto. Ya puedes jugar." else "Inténtalo otra vez."
-                playSound(if digits == "0917" then confirmed else miss, .53)
-            else
-                network.SubmitCode:FireServer(state.roundId, state.lifeId, digits)
-                local completedAt = lastDigit
-                task.delay(.12, function()
-                    if lastDigit == completedAt then clearInput() end
-                end)
-            end
-        end
+    local digit = numberKeys[key]
+    if down[key] or (not digit and key ~= Enum.KeyCode.Backspace) then return end
+    down[key] = true
+    local now = os.clock()
+    local display, completed
+    if digit then
+        display, completed = InputBuffer.push(inputBuffer, digit, now)
+    else
+        display = InputBuffer.erase(inputBuffer, now)
     end
-    view.digits(digits)
-    if practice then view.practice(digits, practiceMessage) end
+
+    receiptUntil = if completed then now + (if practice then Config.InputTimeout else .12) else 0
+    view.digits(display)
+    if practice then
+        local message
+        if completed then
+            local correct = completed == "0917"
+            message = if correct then "✓  Código correcto. Ya puedes jugar." else "Inténtalo otra vez."
+            playSound(if correct then confirmed else miss, .53)
+        end
+        view.practice(display, message)
+    elseif completed then
+        network.SubmitCode:FireServer(state.roundId, state.lifeId, completed)
+    end
 end
 
 UserInputService.InputBegan:Connect(keyPressed)
@@ -292,24 +299,32 @@ GuiService.MenuClosed:Connect(refreshCamera)
 workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(refreshCamera)
 
 local function renderPlates(camera)
+    if not next(plates) then return end
+    debug.profilebegin("Umbral.PlatesClient")
     local origin = camera.CFrame.Position
-    local rendering = state.phase == "playing" and state.status == "alive" and not view.modal
+    local model = player.Character
+    local root = model and model:FindFirstChild("HumanoidRootPart")
+    local head = model and model:FindFirstChild("Head")
+    local rendering = state.phase == "playing" and state.status == "alive" and not view.modal and not GuiService.MenuIsOpen
+    local observer = if rendering and root and head then Geometry.pose(root, head) else nil
     for id, plate in plates do
-        local target = Players:GetPlayerByUserId(id)
-        local model = target and target.Character
-        local root = model and model:FindFirstChild("HumanoidRootPart")
-        local head = model and model:FindFirstChild("Head")
         local visible = false
-        if rendering and root and head then
-            local cframe = Geometry.plateCFrame(root, head)
-            local _, inFrame = camera:WorldToViewportPoint(cframe.Position)
-            visible = inFrame and cframe.LookVector:Dot(origin - cframe.Position) > 0
-                and not Geometry.covered(origin, head.Position, cover)
-                and not Geometry.covered(origin, cframe.Position, cover)
-            if visible then plate.part.CFrame = cframe end
+        if observer then
+            local playerTarget = Players:GetPlayerByUserId(id)
+            local character = playerTarget and playerTarget.Character
+            local targetRoot = character and character:FindFirstChild("HumanoidRootPart")
+            local targetHead = character and character:FindFirstChild("Head")
+            if targetRoot and targetHead then
+                local target = Geometry.withPlate(Geometry.pose(targetRoot, targetHead), targetHead.Size.Z)
+                local _, inFrame = camera:WorldToViewportPoint(target.plate.Position)
+                visible = inFrame and target.plate.LookVector:Dot(origin - target.plate.Position) > 0
+                    and Geometry.eligible(observer, target, cover)
+                if visible then plate.part.CFrame = target.plate end
+            end
         end
         if plate.gui.Enabled ~= visible then plate.gui.Enabled = visible end
     end
+    debug.profileend()
 end
 
 local nextUpdate = 0
@@ -324,7 +339,7 @@ RunService:BindToRenderStep("UmbralHUD", Enum.RenderPriority.Camera.Value + 1, f
     local now = os.clock()
     if now >= nextUpdate then
         nextUpdate = now + .1
-        if #digits > 0 and now - lastDigit > Config.InputTimeout then clearInput() end
+        if InputBuffer.expire(inputBuffer, now) or (receiptUntil > 0 and now >= receiptUntil) then clearInput() end
         view.updateTime(state, workspace:GetServerTimeNow())
     end
 end)

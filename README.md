@@ -59,10 +59,17 @@ Con [Luau CLI 0.747](https://github.com/luau-lang/luau/releases/tag/0.747) y Roj
 
 ```powershell
 luau tests/rules.luau
+luau tests/input_buffer.luau
 python tests/build_studio_qa.py (Get-Command rojo).Source Umbral4-QA.rbxlx
 ```
 
 Abre el lugar QA con **Servidor y clientes** y **2 clientes**. Busca `[UMBRAL QA COMPLETE] PASS` en la salida del servidor. La copia QA acelera las rondas y contiene el canal de pruebas. El lugar descargable usa los tiempos de juego normales.
+
+Consulta la [guía de validación de v0.2.0](docs/pruebas-v0.2.0.md) para ejecutar la matriz automatizada y repetir las pruebas con personas.
+
+### Actualizar una copia de v0.1.0
+
+Compila el lugar con el manifiesto completo para obtener el mapa actualizado junto con los scripts. Si trabajas sobre un mapa editado, replica el marcador `PlayableBounds` dentro del modelo de la arena. Debe estar anclado, sin colisión ni consulta, y contener todos los puntos de aparición. Su posición, tamaño y orientación definen el volumen jugable.
 
 ## Estado
 

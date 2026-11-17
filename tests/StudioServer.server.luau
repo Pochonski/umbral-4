@@ -7,6 +7,7 @@ if not RunService:IsStudio() then return end
 local bridge = Instance.new("RemoteEvent")
 bridge.Name = "UmbralQABridge"
 local peers = {}
+local pingSent, pingSamples = {}, {}
 bridge.OnServerEvent:Connect(function(player, action, first, second)
     local peer = peers[player]
     if not peer then
@@ -24,6 +25,15 @@ bridge.OnServerEvent:Connect(function(player, action, first, second)
         end
     elseif action == "feedback" then
         table.insert(peer.replies, first)
+    elseif action == "keyboard" then
+        peer.keyboard = {ok = first, detail = second}
+    elseif action == "keyboardLatency" then
+        peer.keyboardLatency = first
+    elseif action == "frames" then
+        peer.frames = {count = first, p95 = second}
+    elseif action == "pong" and pingSent[first] then
+        table.insert(pingSamples, (os.clock() - pingSent[first]) * 1000)
+        pingSent[first] = nil
     end
 end)
 bridge.Parent = ReplicatedStorage
@@ -48,8 +58,8 @@ local function place(peer, position, towards)
     character:PivotTo(CFrame.lookAt(position, towards))
 end
 
-local function attack(peer, code, action)
-    bridge:FireClient(peer.player, action or "attack", peer.state.roundId, peer.state.lifeId, code)
+local function attack(peer, code, action, at)
+    bridge:FireClient(peer.player, action or "attack", peer.state.roundId, peer.state.lifeId, code, at)
 end
 
 local function kills(peer)
@@ -62,7 +72,7 @@ end
 local function run()
     local args
     pcall(function() args = StudioTestService:GetTestArgs() end)
-    local expected = if type(args) == "number" then args else 2
+    local expected = if type(args) == "table" then args.clients else (if type(args) == "number" then args else 2)
     local group = await("clients to initialize", function()
         local ready = {}
         for _, peer in peers do if peer.registered then table.insert(ready, peer) end end
@@ -80,6 +90,22 @@ local function run()
     assert(#attacker.state.scores == expected)
     assert(attacker.state.goal == (if expected < 4 then 10 elseif expected < 6 then 15 else 25))
     pass("lobby, round, score and goal with " .. expected .. " real Studio client processes")
+
+    task.spawn(function()
+        for nonce = 1, 20 do
+            pingSent[nonce] = os.clock()
+            bridge:FireClient(attacker.player, "ping", nonce)
+            task.wait(.10)
+        end
+    end)
+
+    local Geometry = require(ReplicatedStorage.UmbralShared.Geometry)
+    local bounds = CFrame.new(18, 8, 12) * CFrame.Angles(0, math.rad(75), 0)
+    local half = Vector3.new(5, 3, 2)
+    assert(Geometry.inBounds(bounds:PointToWorldSpace(Vector3.new(4, -2, 1)), bounds, half))
+    assert(not Geometry.inBounds(bounds:PointToWorldSpace(Vector3.new(5.1, 0, 0)), bounds, half))
+    assert(not Geometry.inBounds(bounds:PointToWorldSpace(Vector3.new(0, -3.1, 0)), bounds, half))
+    pass("translated and rotated bounds include local volume and reject its edges")
 
     local a = Vector3.new(-11, 3.4, -34)
     local b = Vector3.new(-5, 3.4, -34)
@@ -115,10 +141,17 @@ local function run()
 
     place(attacker, a, b)
     place(target, b, a)
-    attack(attacker, code)
-    await("formerly disclosed code rejected behind wall", function() return attacker.replies[#attacker.replies] == "miss" end)
+    attack(attacker, code, "spam")
+    await("rate limit under burst", function() return table.find(attacker.replies, "limited") end)
+    local misses, notices = 0, 0
+    for _, reply in attacker.replies do
+        if reply == "miss" then misses += 1 elseif reply == "limited" then notices += 1 end
+    end
+    assert(misses >= 1 and misses <= 2 and notices == 1)
     assert(kills(attacker) == 0 and target.state.status == "alive")
-    pass("remembered code cannot kill through a wall")
+    bridge:FireClient(attacker.player, "sync")
+    await("hidden code has been revoked", function() return attacker.plates[targetId] == nil end)
+    pass("remembered code is rejected behind cover, sync is clean and a 32-message burst is limited")
 
     wall:Destroy()
     place(attacker, side, opposite)
@@ -127,11 +160,22 @@ local function run()
     await("code is available again", function() return attacker.plates[targetId] == code end)
     attack(attacker, {"malformed"})
     task.wait(.6)
+    bridge:FireClient(attacker.player, "attack", attacker.state.roundId - 1, attacker.state.lifeId, code)
+    task.wait(.55)
+    assert(kills(attacker) == 0 and target.state.status == "alive", "valid code accepted from an obsolete round")
+    attack(attacker, code, "keyboard")
+    local keyboard = await("VirtualInput result", function() return attacker.keyboard end, 12)
+    assert(keyboard.ok, tostring(keyboard.detail))
+    await("single keyboard kill credited", function() return kills(attacker) == 1 and target.state.status == "dead" end)
     attack(attacker, code, "repeat")
-    await("single kill credited", function() return kills(attacker) == 1 and target.state.status == "dead" end)
-    task.wait(.15)
+    task.wait(.45)
     assert(kills(attacker) == 1)
-    pass("malformed remote ignored and duplicate attempts credit exactly one elimination")
+    pass("VirtualInput submitted a code and honored modal/text focus and camera transitions")
+    print(("[UMBRAL INPUT] movementIntent=%s backspaceInjected=%s mainRowUsed=%d mainRowBlocked=%d keyboardHitMs=%.1f"):format(
+        tostring(keyboard.detail.movementIntent), tostring(keyboard.detail.backspaceInjected),
+        keyboard.detail.mainRowUsed, keyboard.detail.mainRowBlocked, attacker.keyboardLatency or -1
+    ))
+    pass("malformed, obsolete-round and duplicate requests did not add eliminations")
 
     await("new protected life", function()
         return target.state.status == "alive" and target.state.lifeId > targetLife
@@ -146,11 +190,69 @@ local function run()
     assert(nextCode ~= code and target.state.status == "alive")
     pass("respawn restores a new life and invalidates the old code")
 
-    await("result state", function() return attacker.state.phase == "results" end, 38)
-    assert(attacker.state.winners[1] == attacker.player.UserId and attacker.state.endReason == "time")
+    if expected >= 4 then
+        local rival = group[3]
+        local flank = side + Vector3.new(0, 0, 2)
+        place(rival, flank, opposite)
+        await("second attacker's grant", function() return rival.plates[targetId] == nextCode end)
+        local at = workspace:GetServerTimeNow() + .5
+        attack(attacker, nextCode, "attack", at)
+        attack(rival, nextCode, "attack", at)
+        await("contested target defeated", function() return target.state.status == "dead" end)
+        task.wait(.4)
+        assert(kills(attacker) + kills(rival) == 2, "contested target awarded multiple kills")
+        pass("two clients submit against one life at the same scheduled time and only one scores")
+    end
+
+    bridge:FireClient(attacker.player, "frames")
+    local frame = await("client frame metrics", function() return attacker.frames end)
+    assert(frame.count > 0 and type(frame.p95) == "number")
+    table.sort(pingSamples)
+    print(("[UMBRAL PERF CLIENT] clients=%d frames=%d p95Ms=%.2f rttN=%d rttP50Ms=%.1f rttP95Ms=%.1f"):format(
+        expected, frame.count, frame.p95, #pingSamples,
+        pingSamples[math.ceil(#pingSamples * .50)] or -1, pingSamples[math.ceil(#pingSamples * .95)] or -1
+    ))
+
+    await("result state", function() return attacker.state.phase == "results" end, 50)
+    assert(table.find(attacker.state.winners, attacker.player.UserId) and attacker.state.endReason == "time")
     await("second round", function() return attacker.state.phase == "playing" and attacker.state.roundId == 2 end)
     assert(kills(attacker) == 0)
     pass("round timeout declares the leader and next round resets scores")
+
+    if type(args) == "table" and args.lateJoin then
+        StudioTestService:AddPlayers(1)
+        local newcomer = await("late client registration", function()
+            for _, peer in peers do
+                if peer.registered and not table.find(group, peer) then return peer end
+            end
+        end, 27)
+        await("late client receives current round", function()
+            return newcomer.state and newcomer.state.phase == "playing" and newcomer.state.roundId == 2
+        end)
+        bridge:FireClient(newcomer.player, "ready")
+        await("late client queues", function() return newcomer.state.ready end)
+        assert(not newcomer.state.participating and next(newcomer.plates) == nil)
+        pass("late connection receives the round and queues without taking a seat or receiving codes")
+    end
+
+    if args == nil then
+        attacker.player:Kick("Umbral QA controlled disconnect")
+    else
+        bridge:FireClient(attacker.player, "leave")
+    end
+    await("client disconnect recorded", function()
+        for _, score in target.state.scores do
+            if score.userId == attacker.player.UserId and score.left then return true end
+        end
+    end)
+    if expected == 2 then
+        assert(target.state.phase == "results" and target.state.endReason == "abandoned" and #target.state.winners == 0)
+        pass("disconnect below minimum ends without a winner")
+    else
+        await("remaining clients tie", function() return target.state.phase == "results" end, 48)
+        assert(#target.state.winners == expected - 1 and not table.find(target.state.winners, attacker.player.UserId))
+        pass("disconnect excludes the departed player and equal remaining scores result in a tie")
+    end
 end
 
 local ok, result = pcall(run)
