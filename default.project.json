@@ -1,0 +1,40 @@
+{
+  "name": "Umbral 4",
+  "tree": {
+    "$className": "DataModel",
+    "Workspace": {
+      "$className": "Workspace",
+      "$properties": {
+        "StreamingEnabled": false
+      },
+      "UmbralWorld": { "$path": "map/EstacionDeRelevo.rbxmx" }
+    },
+    "Lighting": {
+      "$className": "Lighting",
+      "$properties": {
+        "ClockTime": 14.2,
+        "Brightness": 2.4,
+        "GlobalShadows": true,
+        "EnvironmentDiffuseScale": 0.45,
+        "EnvironmentSpecularScale": 0.35,
+        "Ambient": [0.32, 0.38, 0.45],
+        "OutdoorAmbient": [0.53, 0.59, 0.64]
+      }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "UmbralShared": { "$path": "src/shared" }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "UmbralServer": { "$path": "src/server" }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "UmbralClient": { "$path": "src/client" }
+      }
+    }
+  }
+}
