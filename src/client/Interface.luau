@@ -1,6 +1,8 @@
 local TweenService = game:GetService("TweenService")
 local GuiService = game:GetService("GuiService")
 local Lobby = require(script.Parent.Lobby)
+local MapSelection = require(script.Parent.MapSelection)
+local Maps = require(game:GetService("ReplicatedStorage").UmbralShared.Maps)
 
 local ink = Color3.fromRGB(235, 242, 243)
 local muted = Color3.fromRGB(153, 176, 188)
@@ -201,6 +203,7 @@ function Interface.create(playerGui)
         gui = gui, play = playButton, how = howButton, settings = settingsButton,
         close = closeButton, controls = settingsButtons, modal = nil, reduced = false,
     }
+    view.vote = MapSelection.create(playerGui, function() return view.reduced end)
     local optionFeedback = {}
     for _, item in settingsButtons do
         table.insert(optionFeedback, Lobby.buttonFeedback(item, function() return view.reduced end, false))
@@ -210,6 +213,7 @@ function Interface.create(playerGui)
     function view.resize(viewport)
         local scale = math.clamp(math.min(viewport.X / 680, viewport.Y / 620), .46, 1.15)
         lobby.resize(viewport)
+        view.vote.resize(viewport)
         deathScale.Scale, resultScale.Scale = scale, scale
         local topLeft, bottomRight = GuiService:GetGuiInset()
         modalSafe.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)
@@ -268,7 +272,11 @@ function Interface.create(playerGui)
         local alive = playing and state.status == "alive"
         hud.Visible = alive
         crosshair.Visible = alive
-        lobby.show(not playing and state.phase ~= "results")
+        lobby.show(not playing and state.phase ~= "results" and not (state.phase == "voting" and state.ready))
+        view.vote.state(state)
+        for _, entry in Maps do
+            if entry.id == state.mapId then lobby.location(entry.name); break end
+        end
         blackout.Visible = playing and not alive
         resultsShade.Visible = state.phase == "results"
         playButton.Active = supported
@@ -303,7 +311,10 @@ function Interface.create(playerGui)
     end
 
     function view.updateTime(state, now)
-        if state.phase == "countdown" then
+        view.vote.updateTime(state, now)
+        if state.phase == "voting" then
+            queueStatus.Text = "Votación en curso · Pulsa Jugar para elegir mapa"
+        elseif state.phase == "countdown" then
             queueStatus.Text = "La ronda empieza en " .. tostring(math.max(0, math.ceil(state.deadline - now))) .. " s"
         elseif state.phase == "playing" and not state.participating then
             queueStatus.Text = if state.ready then "En cola · Entrarás en la siguiente ronda" else "Ronda en curso"

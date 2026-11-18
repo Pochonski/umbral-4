@@ -35,9 +35,14 @@ jobs:
         run: |
           mapfile -t scripts < <(git ls-files 'src/*.luau' 'tests/*.luau')
           luau-compile --null "${scripts[@]}"
-          luau-analyze src/client/InputBuffer.luau src/shared/Config.luau src/shared/Rules.luau
+          luau-analyze src/client/InputBuffer.luau src/shared/Config.luau src/shared/Rules.luau src/shared/MapVote.luau
           luau tests/rules.luau
           luau tests/input_buffer.luau
+          luau tests/map_vote.luau
+          python3 tests/verify_new_maps.py
+          python3 tools/build_maps.py
+          python3 tools/build_previews.py
+          git diff --exit-code -- map
 
       - name: Verify reproducible build and scripts-only sync
         shell: bash

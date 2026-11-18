@@ -1,0 +1,116 @@
+{
+  "ok": true,
+  "votes": [
+    {
+      "id": 1,
+      "selected": "puerto",
+      "count": 1
+    },
+    {
+      "id": 2,
+      "selected": "invernadero",
+      "count": 1
+    },
+    {
+      "id": 3,
+      "selected": "puerto",
+      "count": 1
+    }
+  ],
+  "clients": 1,
+  "maps": [
+    {
+      "obstructed": [
+        "Spawn 03",
+        "Spawn 09"
+      ],
+      "mapId": "relevo",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 00": false,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    {
+      "obstructed": [],
+      "mapId": "puerto",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": false,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    {
+      "obstructed": [],
+      "mapId": "invernadero",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": false,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    {
+      "obstructed": [
+        "Spawn 03",
+        "Spawn 09"
+      ],
+      "mapId": "relevo",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 00": false,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    }
+  ],
+  "fallback": "missing Puerto bounds recovered to Relevo in round four",
+  "human": false,
+  "qaMinPlayers": 1
+}

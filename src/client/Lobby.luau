@@ -104,8 +104,8 @@ function Lobby.create(playerGui)
     frame(panel, "LuzSuperior", 40, 0, 112, 3, amber)
     frame(panel, "LuzSecundaria", 510, 0, 50, 2, cyan)
     for i = 0, 3 do frame(panel, "Marca", 40 + i * 6, 32, 3, 14, if i == 3 then amber else muted) end
-    text(panel, "Estacion", "ESTACIÓN DE RELEVO", 76, 29, 280, 20, 12, muted, Enum.Font.GothamBold)
-    text(panel, "Identificador", "U4 / ACCESO", 390, 29, 170, 20, 11, muted, Enum.Font.RobotoMono, Enum.TextXAlignment.Right)
+    local station = text(panel, "Estacion", "ESTACIÓN DE RELEVO", 76, 29, 350, 20, 12, muted, Enum.Font.GothamBold)
+    text(panel, "Identificador", "U4 / ACCESO", 445, 29, 115, 20, 11, muted, Enum.Font.RobotoMono, Enum.TextXAlignment.Right)
     frame(panel, "SeparadorSuperior", 40, 66, 520, 1, surface)
     text(panel, "Titulo", "UMBRAL", 40, 99, 402, 83, 76, white, Enum.Font.GothamBold, Enum.TextXAlignment.Center)
     local badge = frame(panel, "Cuatro", 447, 105, 85, 74, amber)
@@ -164,6 +164,7 @@ function Lobby.create(playerGui)
         end
         for _, refresh in refreshers do refresh() end
     end
+    function view.location(name) station.Text = string.upper(name) end
     function view.resize(viewport)
         local topLeft, bottomRight = GuiService:GetGuiInset()
         safe.Position = UDim2.fromOffset(topLeft.X, topLeft.Y)

@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"layouts\":{\"1\":{\"height\":720,\"width\":1280,\"texts\":29},\"4\":{\"height\":768,\"width\":1024,\"texts\":29},\"3\":{\"height\":800,\"width\":1280,\"texts\":29},\"2\":{\"height\":1080,\"width\":1920,\"texts\":29}},\"backspaceInjected\":true,\"human\":false,\"checks\":{\"1\":\"four native resolutions: bounds, text, How, Settings, Back\",\"3\":\"practice wrong and correct codes through VirtualInput\",\"2\":\"ready and leave queue through production buttons\",\"5\":\"options, reduced motion, M, session persistence, unlocked lobby mouse\",\"4\":\"Backspace erases a practice digit\"}}"
+    }
+  ],
+  "isError": false
+}

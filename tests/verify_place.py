@@ -50,7 +50,20 @@ def verify(first, second, sync):
     spawn_folder = (*arena, "Spawns")
     spawns = [item for path, item in items if path[:-1] == spawn_folder]
     assert len(spawns) >= 8, "The arena cannot provide a spawn for every supported seat"
+    for name in ("PuertoDeCarga", "InvernaderoDeProtocolo"):
+        template = ("ServerStorage", "UmbralMapTemplates", name)
+        roots = [item for path, item in items if path == template]
+        assert len(roots) == 1 and roots[0].attrib["class"] == "Model", f"Missing template {name}"
+        markers = [item for path, item in items if path[:-1] == (*template, "Spawns")]
+        assert len(markers) == 12, f"Missing template spawns {name}"
+        assert any(path == (*template, "PlayableBounds") for path, _ in items), f"Missing bounds {name}"
+    for name in ("EstacionDeRelevo", "PuertoDeCarga", "InvernaderoDeProtocolo"):
+        preview = ("ReplicatedStorage", "UmbralMapPreviews", name)
+        pieces = [item for path, item in items if path[:-1] == preview]
+        assert 0 < len(pieces) <= 42, f"Missing or oversized preview {name}"
+        assert all(item.attrib["class"] in {"Part", "WedgePart"} for item in pieces), name
     print(f"Verified {len(scripts)} scripts, {len(spawns)} spawn markers and no QA instances")
+    print("Verified two complete map templates and three bounded native previews")
     print("SHA-256 " + hashlib.sha256(release).hexdigest())
 
 

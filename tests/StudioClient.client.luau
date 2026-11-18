@@ -73,7 +73,7 @@ network.Update.OnClientEvent:Connect(function(kind, state)
     task.defer(function()
         local terminal = player.PlayerGui.UmbralTerminal
         local playingNow = state.phase == "playing" and state.participating
-        if terminal.Enabled ~= (not playingNow and state.phase ~= "results")
+        if terminal.Enabled ~= (not playingNow and state.phase ~= "results" and not (state.phase == "voting" and state.ready))
             or gui.HUD.Visible ~= (playingNow and state.status == "alive")
             or gui.Resultados.Visible ~= (state.phase == "results") then
             bridge:FireServer("menuProbe", false, "UI visibility disagrees with server state "..state.phase)

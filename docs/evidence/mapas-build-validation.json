@@ -1,0 +1,93 @@
+{
+  "ok": true,
+  "sourceLuauFiles": 34,
+  "assetRegenerationIdentical": true,
+  "releaseFile": "Umbral4-TresMapas.rbxlx",
+  "releaseSha256": "19187bdc4f5627661ac24c2a3aedc8c26faf871c2213141019046226ec9e7649",
+  "checks": [
+    {
+      "name": "Compile all source and QA Luau",
+      "exitCode": 0,
+      "stdout": "Compiled 3 KLOC into 195 KB bytecode (read 0.12s, parse 0.00s, compile 0.01s)\n",
+      "stderr": ""
+    },
+    {
+      "name": "Analyze pure modules",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "rules",
+      "exitCode": 0,
+      "stdout": "PASS codes preserve leading zeroes and reject malformed remote values\nPASS a collision never reuses a code in the same round\nPASS a depleted code pool fails without giving out a duplicate\nPASS burst has two attempts and refills at two per second\nPASS round goals cover the intended population bands\nPASS a score tie shares first place and ignores departures\nPASS a round without eligible participants has no winner\nPASS 7 rule tests\n",
+      "stderr": ""
+    },
+    {
+      "name": "input_buffer",
+      "exitCode": 0,
+      "stdout": "PASS the fourth digit sends once and clears the editable buffer\nPASS backspace corrects a pending digit and preserves leading zeroes\nPASS a new key cannot complete an expired entry between HUD updates\nPASS clearing on focus change drops the partial attack\n",
+      "stderr": ""
+    },
+    {
+      "name": "map_vote",
+      "exitCode": 0,
+      "stdout": "PASS current map cannot be offered or selected\nPASS ballot generation and malformed options are rejected\nPASS one vote can change without accumulating votes\nPASS departures and unready remove votes\nPASS a strict majority wins independently of the random selector\nPASS a tie and abstention select only permitted alternatives\nPASS 6 map vote tests\n",
+      "stderr": ""
+    },
+    {
+      "name": "Map structural integrity",
+      "exitCode": 0,
+      "stdout": "{\n  \"structural\": \"PASS\",\n  \"relevoUnchanged\": true,\n  \"maps\": {\n    \"PuertoDeCarga\": {\n      \"parts\": 278,\n      \"spawns\": 12,\n      \"localLights\": 2,\n      \"sha256\": \"dfce5efc5c25508daa2ca55a60e77637251caf083532a23862cba666b56d0ece\"\n    },\n    \"InvernaderoDeProtocolo\": {\n      \"parts\": 264,\n      \"spawns\": 12,\n      \"localLights\": 4,\n      \"sha256\": \"5c01d925af1e4540fe974a7d6d125cfcc1c2b9926a84259729290f0fcb688455\"\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "Generate maps",
+      "exitCode": 0,
+      "stdout": "PuertoDeCarga: 278 parts\nInvernaderoDeProtocolo: 264 parts\n",
+      "stderr": ""
+    },
+    {
+      "name": "Generate previews",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "Build release",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-TresMapas.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rebuild release",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-TresMapas-rebuild.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Sync sourcemap",
+      "exitCode": 0,
+      "stdout": "Created sourcemap at <workspace>\\outputs\\Umbral4-TresMapas-sync.json\n",
+      "stderr": ""
+    },
+    {
+      "name": "Verify release",
+      "exitCode": 0,
+      "stdout": "Verified 12 scripts, 12 spawn markers and no QA instances\nVerified two complete map templates and three bounded native previews\nSHA-256 19187bdc4f5627661ac24c2a3aedc8c26faf871c2213141019046226ec9e7649\n",
+      "stderr": ""
+    },
+    {
+      "name": "Build separate maps QA",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-Mapas-QA.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Whitespace",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

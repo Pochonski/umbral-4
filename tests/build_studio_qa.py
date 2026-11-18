@@ -7,18 +7,18 @@ import sys
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
-if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and sys.argv[3] != "--menu"):
-    raise SystemExit("Usage: python tests/build_studio_qa.py path_to_rojo output.rbxlx [--menu]")
+if len(sys.argv) not in (3, 4) or (len(sys.argv) == 4 and sys.argv[3] not in ("--menu", "--maps")):
+    raise SystemExit("Usage: python tests/build_studio_qa.py path_to_rojo output.rbxlx [--menu|--maps]")
 rojo, output = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()
 project = json.loads((root / "default.project.json").read_text(encoding="utf-8"))
 services = project["tree"]
-if len(sys.argv) == 4:
+if len(sys.argv) == 4 and sys.argv[3] == "--menu":
     services["Workspace"].setdefault("$attributes", {})["UmbralMenuQA"] = True
 for group, filename in (
     (services["ServerScriptService"], "StudioServer.server.luau"),
     (services["StarterPlayer"]["StarterPlayerScripts"], "StudioClient.client.luau"),
 ):
-    group["UmbralQA"] = {"$path": "tests/" + filename}
+    group["UmbralQA"] = {"$path": "tests/" + ("maps/" if len(sys.argv) == 4 and sys.argv[3] == "--maps" else "") + filename}
 
 with tempfile.TemporaryDirectory(prefix="umbral-qa-", dir=root) as directory:
     temporary = Path(directory)
@@ -30,6 +30,8 @@ with tempfile.TemporaryDirectory(prefix="umbral-qa-", dir=root) as directory:
         ("RespawnDelay = 6", "RespawnDelay = 1.4"),
     ):
         config = config.replace(old, new, 1)
+    if len(sys.argv) == 4 and sys.argv[3] == "--maps":
+        config = config.replace("VoteDuration = 10", "VoteDuration = 6").replace("RoundDuration = 35", "RoundDuration = 20")
     manifest = temporary / "default.project.json"
     for location in (
         services["Workspace"]["UmbralWorld"],
@@ -39,6 +41,9 @@ with tempfile.TemporaryDirectory(prefix="umbral-qa-", dir=root) as directory:
         services["StarterPlayer"]["StarterPlayerScripts"]["UmbralQA"],
     ):
         location["$path"] = "../" + location["$path"]
+    for entry in services.get("ServerStorage", {}).get("UmbralMapTemplates", {}).values():
+        if isinstance(entry, dict) and "$path" in entry: entry["$path"] = "../" + entry["$path"]
+    services["ReplicatedStorage"]["UmbralMapPreviews"]["$path"] = "../" + services["ReplicatedStorage"]["UmbralMapPreviews"]["$path"]
     services["ReplicatedStorage"]["UmbralShared"]["$path"] = "shared"
     shutil.copytree(root / "src/shared", temporary / "shared")
     (temporary / "shared/Config.luau").write_text(config, encoding="utf-8")

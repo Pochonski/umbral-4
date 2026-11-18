@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"sharedExteriorInWorld\":false,\"ok\":true,\"priorMap\":\"invernadero\",\"activeMap\":\"relevo\",\"human\":false,\"relevoExteriorInsideActiveMap\":true,\"fallback\":\"Missing Puerto Bounds recovered to Relevo\"}"
+    }
+  ],
+  "isError": false
+}

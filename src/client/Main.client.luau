@@ -10,11 +10,12 @@ local shared = ReplicatedStorage:WaitForChild("UmbralShared")
 local Config = require(shared.Config)
 local Geometry = require(shared.Geometry)
 local Interface = require(script.Parent.Interface)
+local Maps = require(shared.Maps)
 local InputBuffer = require(script.Parent.InputBuffer)
 local player = Players.LocalPlayer
 local view = Interface.create(player:WaitForChild("PlayerGui"))
 local network = ReplicatedStorage:WaitForChild("UmbralNetwork")
-local map = workspace:WaitForChild("UmbralWorld"):WaitForChild(Config.ArenaModel)
+local map = workspace:WaitForChild("UmbralWorld"):WaitForChild("ActiveArena")
 local cover = Geometry.coverParams(map)
 
 local state = {
@@ -86,7 +87,7 @@ local function refreshCamera()
             UserInputService.MouseBehavior = Enum.MouseBehavior.Default
         end
     end
-    if camera and overview and camera.CameraType ~= Enum.CameraType.Scriptable then
+    if camera and overview then
         camera.CameraType = Enum.CameraType.Scriptable
         camera.CFrame = vista
         camera.Focus = CFrame.new(vistaTarget)
@@ -162,7 +163,15 @@ end
 
 local function onState(nextState)
     receivedState = true
-    if state.roundId ~= nextState.roundId or state.lifeId ~= nextState.lifeId
+    for _, entry in Maps do
+        if entry.id == nextState.mapId then
+            local c = entry.camera
+            vistaTarget = Vector3.new(c[4],c[5],c[6])
+            vista = CFrame.lookAt(Vector3.new(c[1],c[2],c[3]),vistaTarget)
+            break
+        end
+    end
+    if state.mapRevision ~= nextState.mapRevision or state.roundId ~= nextState.roundId or state.lifeId ~= nextState.lifeId
         or state.phase ~= nextState.phase or state.status ~= nextState.status then
         clearInput()
         clearPlates()
@@ -209,6 +218,14 @@ end)
 view.how.Activated:Connect(function() openModal("how") end)
 view.settings.Activated:Connect(function() openModal("settings") end)
 view.close.Activated:Connect(function() openModal(nil) end)
+for _, card in view.vote.cards do
+    card.button.Activated:Connect(function()
+        if state.phase == "voting" and state.ready and view.vote.voteId then
+            network.Request:FireServer("vote", view.vote.voteId, card.mapId)
+        end
+    end)
+end
+view.vote.leave.Activated:Connect(function() network.Request:FireServer("ready", false) end)
 
 local function applyOptions()
     UserInputService.MouseDeltaSensitivity = sensitivity
@@ -307,7 +324,8 @@ local function renderPlates(camera)
     local model = player.Character
     local root = model and model:FindFirstChild("HumanoidRootPart")
     local head = model and model:FindFirstChild("Head")
-    local rendering = state.phase == "playing" and state.status == "alive" and not view.modal and not GuiService.MenuIsOpen
+    local rendering = map:GetAttribute("Revision") == state.mapRevision and #map:GetChildren() == 1
+        and state.phase == "playing" and state.status == "alive" and not view.modal and not GuiService.MenuIsOpen
     local observer = if rendering and root and head then Geometry.pose(root, head) else nil
     for id, plate in plates do
         local visible = false
