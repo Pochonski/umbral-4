@@ -134,7 +134,7 @@ local function run()
     wall.Anchored = true
     wall.Size = Vector3.new(.55, 12, 5)
     wall.Position = (a + b) * .5 + Vector3.new(0, 2, 0)
-    wall.Parent = workspace.UmbralWorld.EstacionDeRelevo
+    wall.Parent = workspace.UmbralWorld.ActiveArena
     place(attacker, a, b)
     place(target, b, a)
     local targetId = target.player.UserId
@@ -185,7 +185,7 @@ local function run()
         cover.Anchored = true
         cover.Size = Vector3.new(.6, 10, 2.4)
         cover.Position = Vector3.new(0, 6, -38)
-        cover.Parent = workspace.UmbralWorld.EstacionDeRelevo
+        cover.Parent = workspace.UmbralWorld.ActiveArena
         for _, scenario in {"cover", "turn"} do
             attacker.edge = nil
             local feedbackBefore = #attacker.replies

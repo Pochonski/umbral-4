@@ -1,0 +1,667 @@
+{
+  "ok": true,
+  "occlusion": {
+    "relevo": {
+      "mapId": "relevo",
+      "checks": 3214,
+      "scope": "opaque geometry, supported ground and raised surfaces, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 11544,
+      "mismatches": 0
+    },
+    "puerto": {
+      "mapId": "puerto",
+      "checks": 2954,
+      "scope": "opaque geometry, supported ground and raised surfaces, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 9856,
+      "mismatches": 0
+    },
+    "invernadero": {
+      "mapId": "invernadero",
+      "checks": 3220,
+      "scope": "opaque geometry, supported ground and raised surfaces, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 10812,
+      "mismatches": 0
+    }
+  },
+  "clients": 1,
+  "navigation": {
+    "relevo": {
+      "obstructed": [
+        "Spawn 03",
+        "Spawn 09"
+      ],
+      "mapId": "relevo",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 00": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    "puerto": {
+      "obstructed": [],
+      "mapId": "puerto",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    "invernadero": {
+      "obstructed": [],
+      "mapId": "invernadero",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    }
+  },
+  "relevoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 7,
+          "Triangles": 4080
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 10,
+          "Triangles": 498
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 20,
+      "Triangles": 4606
+    }
+  },
+  "samplesPerCase": 2,
+  "cases": [
+    {
+      "gpuP50Ms": 0.43292800546623766,
+      "totalMemoryMb": 2594.3984375,
+      "frames": 902,
+      "p95Ms": 17.664799466729164,
+      "quality": "Level05",
+      "seconds": 15.015834599995287,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.7535999757237732,
+      "width": 1280,
+      "cpuP95Ms": 5.08530018851161,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.687700524926186,
+      "cpuP50Ms": 4.248599987477064,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.40339198312722147,
+      "totalMemoryMb": 2594.6171875,
+      "frames": 901,
+      "p95Ms": 17.978500574827194,
+      "quality": "Level05",
+      "seconds": 15.015412799999467,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.7126720156520605,
+      "width": 1280,
+      "cpuP95Ms": 5.044199991971254,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.687799245119095,
+      "cpuP50Ms": 4.20660013332963,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4523840034380555,
+      "totalMemoryMb": 2586.76953125,
+      "frames": 902,
+      "p95Ms": 17.806900665163994,
+      "quality": "Level05",
+      "seconds": 15.016989700001432,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.0335680563002825,
+      "width": 1920,
+      "cpuP95Ms": 5.169800017029047,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.683999449014664,
+      "cpuP50Ms": 4.242700058966875,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.6331840413622558,
+      "totalMemoryMb": 2588.86328125,
+      "frames": 901,
+      "p95Ms": 18.013499677181244,
+      "quality": "Level05",
+      "seconds": 15.016591400002653,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.1183039750903845,
+      "width": 1920,
+      "cpuP95Ms": 5.13850012794137,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.672300174832344,
+      "cpuP50Ms": 4.3425001204013824,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.43744000140577555,
+      "totalMemoryMb": 2588.05859375,
+      "frames": 902,
+      "p95Ms": 17.917899414896965,
+      "quality": "Level10",
+      "seconds": 15.016753199997765,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.9840000420808792,
+      "width": 1280,
+      "cpuP95Ms": 5.095100030303001,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.656499356031418,
+      "cpuP50Ms": 4.255299922078848,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4531199811026454,
+      "totalMemoryMb": 2587.953125,
+      "frames": 901,
+      "p95Ms": 17.621900886297226,
+      "quality": "Level10",
+      "seconds": 15.016148000002431,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.7863360224291682,
+      "width": 1280,
+      "cpuP95Ms": 4.893099889159203,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.687100753188133,
+      "cpuP50Ms": 4.188899882137775,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.45321599463932216,
+      "totalMemoryMb": 2589.59375,
+      "frames": 902,
+      "p95Ms": 17.79480092227459,
+      "quality": "Level10",
+      "seconds": 15.016113900004711,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.6926720379851758,
+      "width": 1920,
+      "cpuP95Ms": 5.073700100183487,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.65480062365532,
+      "cpuP50Ms": 4.3126000091433525,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4435839946381748,
+      "totalMemoryMb": 2590.45703125,
+      "frames": 901,
+      "p95Ms": 18.14880035817623,
+      "quality": "Level10",
+      "seconds": 15.016886299999896,
+      "mapId": "relevo",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.8115519885905087,
+      "width": 1920,
+      "cpuP95Ms": 5.117299966514111,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.648199409246445,
+      "cpuP50Ms": 4.2351000010967255,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.5226560169830918,
+      "totalMemoryMb": 2555.890625,
+      "frames": 901,
+      "p95Ms": 17.92689971625805,
+      "quality": "Level05",
+      "seconds": 15.00056290000066,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.9799039689823985,
+      "width": 1280,
+      "cpuP95Ms": 4.9859001301229,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.658099368214607,
+      "cpuP50Ms": 4.311600234359503,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4258239932823926,
+      "totalMemoryMb": 2555.56640625,
+      "frames": 901,
+      "p95Ms": 17.8677998483181,
+      "quality": "Level05",
+      "seconds": 15.01539220000268,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.9821760468184948,
+      "width": 1280,
+      "cpuP95Ms": 4.903099965304136,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.659000888466835,
+      "cpuP50Ms": 4.160800017416477,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.41391997365280986,
+      "totalMemoryMb": 2551.01171875,
+      "frames": 902,
+      "p95Ms": 17.75220036506653,
+      "quality": "Level05",
+      "seconds": 15.016597699999693,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.7099200156517327,
+      "width": 1920,
+      "cpuP95Ms": 4.815899766981602,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.67499914765358,
+      "cpuP50Ms": 4.092199727892876,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.3736320068128407,
+      "totalMemoryMb": 2551.30078125,
+      "frames": 901,
+      "p95Ms": 17.65589974820614,
+      "quality": "Level05",
+      "seconds": 15.01590290000604,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.5792320007458329,
+      "width": 1920,
+      "cpuP95Ms": 4.793000407516956,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.69990085065365,
+      "cpuP50Ms": 4.11320012062788,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.35708799259737134,
+      "totalMemoryMb": 2551.23828125,
+      "frames": 902,
+      "p95Ms": 17.941299825906754,
+      "quality": "Level10",
+      "seconds": 15.017789300000004,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.8091840427368879,
+      "width": 1280,
+      "cpuP95Ms": 5.060099996626377,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.666799783706665,
+      "cpuP50Ms": 4.1183000430464745,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4052479926031083,
+      "totalMemoryMb": 2551.2734375,
+      "frames": 901,
+      "p95Ms": 18.22349987924099,
+      "quality": "Level10",
+      "seconds": 15.014555500005372,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.0056640021502972,
+      "width": 1280,
+      "cpuP95Ms": 5.056300200521946,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.625000163912773,
+      "cpuP50Ms": 4.310199990868568,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.5426239804364741,
+      "totalMemoryMb": 2552.03515625,
+      "frames": 902,
+      "p95Ms": 17.746800556778908,
+      "quality": "Level10",
+      "seconds": 15.015900099999271,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.136288046836853,
+      "width": 1920,
+      "cpuP95Ms": 5.2511002868413925,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.673700883984566,
+      "cpuP50Ms": 4.257299937307835,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.4197440284769982,
+      "totalMemoryMb": 2551.91015625,
+      "frames": 900,
+      "p95Ms": 17.777200788259506,
+      "quality": "Level10",
+      "seconds": 15.000397600000724,
+      "mapId": "puerto",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.8823040407150984,
+      "width": 1920,
+      "cpuP95Ms": 4.765499848872423,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.664599999785423,
+      "cpuP50Ms": 4.122300073504448,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.36547199124470353,
+      "totalMemoryMb": 2552.9296875,
+      "frames": 902,
+      "p95Ms": 17.937900498509407,
+      "quality": "Level05",
+      "seconds": 15.016348400000425,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.5859200027771294,
+      "width": 1280,
+      "cpuP95Ms": 4.9542998895049095,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.659600660204887,
+      "cpuP50Ms": 4.175600130110979,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.36387197906151414,
+      "totalMemoryMb": 2552.42578125,
+      "frames": 901,
+      "p95Ms": 17.705200240015984,
+      "quality": "Level05",
+      "seconds": 15.016119600004458,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.7145280251279473,
+      "width": 1280,
+      "cpuP95Ms": 4.932499956339598,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.68279990553856,
+      "cpuP50Ms": 4.158899653702974,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.5547840264625847,
+      "totalMemoryMb": 2552.6796875,
+      "frames": 902,
+      "p95Ms": 18.16290058195591,
+      "quality": "Level05",
+      "seconds": 15.017390100001649,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.084128045476973,
+      "width": 1920,
+      "cpuP95Ms": 5.00919995829463,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.700999811291695,
+      "cpuP50Ms": 4.160299897193909,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.5512959905900061,
+      "totalMemoryMb": 2552.6640625,
+      "frames": 901,
+      "p95Ms": 18.18620041012764,
+      "quality": "Level05",
+      "seconds": 15.014975099998992,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.0922880610451102,
+      "width": 1920,
+      "cpuP95Ms": 5.042300093919039,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.654500737786293,
+      "cpuP50Ms": 4.28909994661808,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.38975998177193105,
+      "totalMemoryMb": 2552.60546875,
+      "frames": 901,
+      "p95Ms": 17.600800842046738,
+      "quality": "Level10",
+      "seconds": 15.000843299996632,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.6704959669150412,
+      "width": 1280,
+      "cpuP95Ms": 4.818299785256386,
+      "sample": 1,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.697600483894348,
+      "cpuP50Ms": 4.046000074595213,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.3643200034275651,
+      "totalMemoryMb": 2552.59375,
+      "frames": 901,
+      "p95Ms": 17.818599939346313,
+      "quality": "Level10",
+      "seconds": 15.01493820000178,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.60659198788926,
+      "width": 1280,
+      "cpuP95Ms": 4.871099721640348,
+      "sample": 2,
+      "fov": 70,
+      "height": 720,
+      "p50Ms": 16.6919007897377,
+      "cpuP50Ms": 4.045000299811363,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.39897600072436035,
+      "totalMemoryMb": 2552.94921875,
+      "frames": 902,
+      "p95Ms": 17.726600170135498,
+      "quality": "Level10",
+      "seconds": 15.015803000002052,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 0.9865280007943511,
+      "width": 1920,
+      "cpuP95Ms": 5.22529985755682,
+      "sample": 1,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.688700765371323,
+      "cpuP50Ms": 4.227300174534321,
+      "mapUiHidden": true
+    },
+    {
+      "gpuP50Ms": 0.41875202441588044,
+      "totalMemoryMb": 2552.94921875,
+      "frames": 901,
+      "p95Ms": 17.9734006524086,
+      "quality": "Level10",
+      "seconds": 15.016832699999213,
+      "mapId": "invernadero",
+      "cameraFixed": true,
+      "gpuP95Ms": 1.1322560021653771,
+      "width": 1920,
+      "cpuP95Ms": 4.970199894160032,
+      "sample": 2,
+      "fov": 70,
+      "height": 1080,
+      "p50Ms": 16.63989946246147,
+      "cpuP50Ms": 4.092699848115444,
+      "mapUiHidden": true
+    }
+  ],
+  "camera": [
+    -8,
+    4.5,
+    -24,
+    0,
+    7,
+    0
+  ],
+  "invernaderoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 8,
+          "Triangles": 3336
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 84
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 14,
+      "Triangles": 3448
+    }
+  },
+  "puertoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 5,
+          "Triangles": 1044
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 4,
+          "Triangles": 98
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 12,
+      "Triangles": 1170
+    }
+  },
+  "sampleSeconds": 15,
+  "human": false,
+  "warmupSeconds": 5,
+  "mode": "idle map rendering",
+  "environment": {
+    "studioVersion": "0.748.0.7481526",
+    "cpu": "AMD Ryzen 5 5600G",
+    "gpu": "NVIDIA GeForce RTX 5060",
+    "ramApproxGb": 16,
+    "utcDate": "2026-11-18",
+    "hardwareModest": false
+  }
+}

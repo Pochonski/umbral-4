@@ -1,6 +1,7 @@
 --!strict
 local Config = {
-    ArenaModel = "EstacionDeRelevo",
+    VoteDuration = 10,
+    StartMap = "relevo",
     MinPlayers = 2,
     MaxPlayers = 8,
     Countdown = 10,

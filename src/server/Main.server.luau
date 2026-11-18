@@ -8,6 +8,12 @@ local Config = require(shared.Config)
 local Rules = require(shared.Rules)
 local Geometry = require(shared.Geometry)
 local Arena = require(script.Parent.Arena)
+local Maps = require(shared.Maps)
+local MapVote = require(shared.MapVote)
+local ballot
+local ballotId = 0
+local mapIds = {}
+for _, entry in Maps do table.insert(mapIds, entry.id) end
 
 Players.CharacterAutoLoads = false
 local network = Instance.new("Folder")
@@ -60,6 +66,9 @@ end
 local function snapshot(record, ranking)
     update:FireClient(record.player, "state", {
         phase = phase, roundId = roundId, deadline = deadline, goal = goal,
+        mapId = Arena.id, mapRevision = Arena.revision,
+        vote = if ballot then {id = ballot.id, options = ballot.options, counts = MapVote.counts(ballot),
+            selected = ballot.votes[record.player.UserId]} else nil,
         ready = record.ready, readyCount = count("ready"), participating = record.participating,
         status = record.status, lifeId = record.lifeId, respawnAt = record.respawnAt,
         protectedUntil = record.protectedUntil, killerName = record.killerName,
@@ -248,11 +257,19 @@ local function begin(now)
 end
 
 local function reset()
-    phase, deadline, goal, endReason = "waiting", 0, 0, ""
+    phase, deadline, goal, endReason = "voting", time() + Config.VoteDuration, 0, ""
+    ballotId += 1
+    ballot = MapVote.new(ballotId, mapIds, Arena.id)
     scores, winners = {}, {}
     for _, record in roster do
         if record.participating then
             record.participating = false
+            -- Move any existing avatar out before arena removal, including late load callbacks.
+            local root = parts(record)
+            if root then
+                record.character:PivotTo(Arena.lobby)
+                root.AssemblyLinearVelocity = Vector3.zero
+            end
             queueSpawn(record, false)
         end
     end
@@ -338,6 +355,7 @@ local function addPlayer(player)
         lifeId = 0, status = "lobby", respawnAt = 0, protectedUntil = 0, killerName = "",
         reveals = {}, spawnTicket = 0, retryAt = 0, lastSync = -math.huge, lastReady = -math.huge,
         bucket = {tokens = Config.RequestBurst, updated = now},
+        voteBucket = {tokens = 2, updated = now},
     }
     roster[player] = record
     queueSpawn(record, false)
@@ -348,6 +366,7 @@ Players.PlayerRemoving:Connect(function(player)
     local record = roster[player]
     if not record then return end
     roster[player] = nil
+    if ballot then MapVote.remove(ballot, player.UserId) end
     cancelLife(record)
     local score = scores[player.UserId]
     if score and phase == "playing" then score.left = true end
@@ -355,7 +374,7 @@ Players.PlayerRemoving:Connect(function(player)
     dirty = true
 end)
 
-request.OnServerEvent:Connect(function(player, kind, value)
+request.OnServerEvent:Connect(function(player, kind, value, selection)
     local record = roster[player]
     local now = time()
     if not record then return end
@@ -376,11 +395,16 @@ request.OnServerEvent:Connect(function(player, kind, value)
             end
         end
         update:FireClient(player, "plates", roundId, record.lifeId, plates, true)
+    elseif kind == "vote" then
+        if phase ~= "voting" or now >= deadline or not record.ready or not ballot then return end
+        if not Rules.consume(record.voteBucket, now, 2, 2) then return end
+        if MapVote.cast(ballot, player.UserId, value, selection) then dirty = true end
     elseif kind == "ready" and type(value) == "boolean" and not record.participating then
         if now - record.lastReady < 0.24 then return end
         record.lastReady = now
         if value and not record.ready then record.readyAt = now end
         record.ready = value
+        if not value and ballot then MapVote.remove(ballot, player.UserId) end
         dirty = true
     end
 end)
@@ -425,6 +449,24 @@ RunService.Heartbeat:Connect(function()
         elseif now >= deadline then
             begin(now)
         end
+    elseif phase == "voting" and now >= deadline then
+        local selected = MapVote.winner(ballot, function(low, high) return random:NextInteger(low, high) end)
+        -- Lobby avatars can also be in flight from a previous asynchronous character load.
+        for _, record in roster do
+            local root = parts(record)
+            if root then record.character:PivotTo(Arena.lobby); root.AssemblyLinearVelocity = Vector3.zero end
+        end
+        local ok = Arena.activate(selected)
+        ballot = nil
+        if ok then phase, deadline = "waiting", 0
+        else
+            -- Keep the server out of combat if even the recovery map cannot load.
+            warn("[Umbral Maps] Recovery map unavailable; retrying in ten seconds")
+            ballotId += 1
+            ballot = MapVote.new(ballotId, mapIds, Arena.id)
+            deadline = now + Config.VoteDuration
+        end
+        dirty = true
     elseif phase == "playing" and now >= deadline then
         finish("time")
     elseif phase == "results" and now >= deadline then

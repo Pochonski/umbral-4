@@ -7,21 +7,35 @@
       "$properties": {
         "StreamingEnabled": false
       },
-      "UmbralWorld": { "$path": "map/EstacionDeRelevo.rbxmx" }
+      "UmbralWorld": {
+        "$path": "map/EstacionDeRelevo.rbxmx"
+      }
     },
     "Lighting": {
       "$className": "Lighting",
       "$properties": {
         "ClockTime": 16.08,
         "GeographicLatitude": 27,
-        "Brightness": 2.60,
+        "Brightness": 2.6,
         "ExposureCompensation": 0.025,
         "GlobalShadows": true,
         "EnvironmentDiffuseScale": 0.59,
         "EnvironmentSpecularScale": 0.28,
-        "Ambient": [0.45, 0.465, 0.49],
-        "OutdoorAmbient": [0.58, 0.61, 0.64],
-        "ColorShift_Top": [0.09, 0.042, 0.015]
+        "Ambient": [
+          0.45,
+          0.465,
+          0.49
+        ],
+        "OutdoorAmbient": [
+          0.58,
+          0.61,
+          0.64
+        ],
+        "ColorShift_Top": [
+          0.09,
+          0.042,
+          0.015
+        ]
       },
       "Atmosfera del recinto": {
         "$className": "Atmosphere",
@@ -30,8 +44,16 @@
           "Offset": 0.12,
           "Haze": 0.52,
           "Glare": 0,
-          "Color": [0.82, 0.86, 0.89],
-          "Decay": [0.60, 0.56, 0.49]
+          "Color": [
+            0.82,
+            0.86,
+            0.89
+          ],
+          "Decay": [
+            0.6,
+            0.56,
+            0.49
+          ]
         }
       },
       "Color de tarde": {
@@ -40,27 +62,56 @@
           "Brightness": 0.006,
           "Contrast": 0.046,
           "Saturation": -0.038,
-          "TintColor": [1.0, 0.985, 0.96]
+          "TintColor": [
+            1.0,
+            0.985,
+            0.96
+          ]
         }
       },
       "Reflejo de luminarias": {
         "$className": "BloomEffect",
-        "$properties": {"Intensity": 0.055, "Size": 14, "Threshold": 1.95}
+        "$properties": {
+          "Intensity": 0.055,
+          "Size": 14,
+          "Threshold": 1.95
+        }
       }
     },
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
-      "UmbralShared": { "$path": "src/shared" }
+      "UmbralShared": {
+        "$path": "src/shared"
+      },
+      "UmbralMapPreviews": {
+        "$path": "map/MapPreviews.rbxmx"
+      }
     },
     "ServerScriptService": {
       "$className": "ServerScriptService",
-      "UmbralServer": { "$path": "src/server" }
+      "UmbralServer": {
+        "$path": "src/server"
+      }
     },
     "StarterPlayer": {
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "UmbralClient": { "$path": "src/client" }
+        "UmbralClient": {
+          "$path": "src/client"
+        }
+      }
+    },
+    "ServerStorage": {
+      "$className": "ServerStorage",
+      "UmbralMapTemplates": {
+        "$className": "Folder",
+        "PuertoDeCarga": {
+          "$path": "map/PuertoDeCarga.rbxmx"
+        },
+        "InvernaderoDeProtocolo": {
+          "$path": "map/InvernaderoDeProtocolo.rbxmx"
+        }
       }
     }
   }

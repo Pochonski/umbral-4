@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"network\":{\"InboundNetworkJitterMs\":0,\"OutboundNetworkJitterMs\":0,\"InboundNetworkMinDelayMs\":0,\"OutboundNetworkLossPercent\":0,\"InboundNetworkLossPercent\":0,\"OutboundNetworkMinDelayMs\":0},\"spawn09\":\"-23, 3.4000000953674316, 37\",\"mode\":\"Edit\",\"spawn03\":\"22, 3.4000000953674316, -36\",\"temporaryQA\":[]}"
+    }
+  ],
+  "isError": false
+}

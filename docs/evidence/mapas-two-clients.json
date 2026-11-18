@@ -1,0 +1,31 @@
+{
+  "human": false,
+  "clients": 2,
+  "ok": true,
+  "sourceLog": "0.748.0.7481526_20261118T062010Z_Studio_905A5_last.log",
+  "checks": [
+    "relevo: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes",
+    "relevo: live targets, cover rejects, frontal hit and respawn",
+    "two network votes select puerto; stale/forged options rejected; leaving/rejoining queue updates votes",
+    "puerto: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes",
+    "old round attack cannot score after changing map",
+    "puerto: native opaque cover rejects remembered code; outside corner exposes target",
+    "puerto: live targets, cover rejects, frontal hit and respawn",
+    "two network votes select invernadero; stale/forged options rejected; leaving/rejoining queue updates votes",
+    "invernadero: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes",
+    "old round attack cannot score after changing map",
+    "invernadero: native opaque cover rejects remembered code; outside corner exposes target",
+    "invernadero: live targets, cover rejects, frontal hit and respawn",
+    "actual disconnected client loses its vote"
+  ],
+  "completionLine": "2026-11-18T06:21:50.737Z,100.737648,5f94,6,Info [FLog::CreatorOutput] [MAP QA COMPLETE] true {\"human\":false,\"clients\":2,\"checks\":[\"relevo: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes\",\"relevo: live targets, cover rejects, frontal hit and respawn\",\"two network votes select puerto; stale/forged options rejected; leaving/rejoining queue updates votes\",\"puerto: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes\",\"old round attack cannot score after changing map\",\"puerto: native opaque cover rejects remembered code; outside corner exposes target\",\"puerto: live targets, cover rejects, frontal hit and respawn\",\"two network votes select invernadero; stale/forged options rejected; leaving/rejoining queue updates votes\",\"invernadero: one active model, bounds and twelve supported spawns; new maps have clear avatar envelopes\",\"old round attack cannot score after changing map\",\"invernadero: native opaque cover rejects remembered code;",
+  "evidenceNote": "Individual native server log PASS entries preserved; final JSON line is truncated by Studio logger.",
+  "utc": "2026-11-18T06:20:10Z",
+  "qaOverrides": {
+    "countdown": 2,
+    "roundSeconds": 20,
+    "resultsSeconds": 1,
+    "respawnSeconds": 1.4,
+    "voteSeconds": 6
+  }
+}

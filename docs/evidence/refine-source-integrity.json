@@ -1,0 +1,46 @@
+{
+  "baseCommit": "3b4f8f3",
+  "ok": true,
+  "files": [
+    {
+      "file": "map/EstacionDeRelevo.rbxmx",
+      "unchanged": true,
+      "sha256Normalized": "4e392786e6ee7cb75eb84c4390767f23028c62b167bb557eff06411780847aaa"
+    },
+    {
+      "file": "map/PuertoDeCarga.rbxmx",
+      "unchanged": true,
+      "sha256Normalized": "dfce5efc5c25508daa2ca55a60e77637251caf083532a23862cba666b56d0ece"
+    },
+    {
+      "file": "map/InvernaderoDeProtocolo.rbxmx",
+      "unchanged": true,
+      "sha256Normalized": "5c01d925af1e4540fe974a7d6d125cfcc1c2b9926a84259729290f0fcb688455"
+    },
+    {
+      "file": "src/server/Arena.luau",
+      "unchanged": true,
+      "sha256Normalized": "be9a9896a665fff59a161d222cc7adb7fe11edc214b64aedb75fa56742c03cab"
+    },
+    {
+      "file": "src/server/Main.server.luau",
+      "unchanged": true,
+      "sha256Normalized": "0744374b9b8080f3bedf538a3b00669f793350150b7b0c2fc2c547bfa7ac496d"
+    },
+    {
+      "file": "src/client/Main.client.luau",
+      "unchanged": true,
+      "sha256Normalized": "e208a26d083adc6b45898712ac09aa219d8071627cf2380d32eed85e25b0665a"
+    },
+    {
+      "file": "src/shared/Geometry.luau",
+      "unchanged": true,
+      "sha256Normalized": "5c51be94b738da3d6db30fc3779fba72e1425f04aae07a886afdf2d7da5bf6f1"
+    },
+    {
+      "file": "src/shared/Config.luau",
+      "unchanged": true,
+      "sha256Normalized": "52fcf560b76f9a0eb49c1db8319a33378f01c537806f37b0987d902252555725"
+    }
+  ]
+}

@@ -1,0 +1,587 @@
+{
+  "ok": true,
+  "occlusion": {
+    "relevo": {
+      "mapId": "relevo",
+      "checks": 2576,
+      "scope": "opaque geometry, ground-level avatar envelopes, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 8966,
+      "mismatches": 0
+    },
+    "puerto": {
+      "mapId": "puerto",
+      "checks": 3114,
+      "scope": "opaque geometry, ground-level avatar envelopes, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 9976,
+      "mismatches": 0
+    },
+    "invernadero": {
+      "mapId": "invernadero",
+      "checks": 3148,
+      "scope": "opaque geometry, ground-level avatar envelopes, frontal codes within 45 studs",
+      "points": 80,
+      "raycasts": 10580,
+      "mismatches": 0
+    }
+  },
+  "clients": 1,
+  "navigation": {
+    "relevo": {
+      "obstructed": [
+        "Spawn 03",
+        "Spawn 09"
+      ],
+      "mapId": "relevo",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 00": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    "puerto": {
+      "obstructed": [],
+      "mapId": "puerto",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    },
+    "invernadero": {
+      "obstructed": [],
+      "mapId": "invernadero",
+      "spawns": 12,
+      "activeModels": 1,
+      "pathsToSpawn01": {
+        "Spawn 10": true,
+        "Spawn 07": true,
+        "Spawn 09": true,
+        "Spawn 01": true,
+        "Spawn 12": true,
+        "Spawn 04": true,
+        "Spawn 03": true,
+        "Spawn 05": true,
+        "Spawn 02": true,
+        "Spawn 11": true,
+        "Spawn 06": true,
+        "Spawn 08": true
+      },
+      "unsupported": []
+    }
+  },
+  "relevoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 7,
+          "Triangles": 4080
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 10,
+          "Triangles": 498
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 20,
+      "Triangles": 4606
+    }
+  },
+  "samplesPerCase": 2,
+  "cases": [
+    {
+      "seconds": 15.015503399998124,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.5226879729889333,
+      "gpuP95Ms": 1.065600081346929,
+      "frames": 902,
+      "width": 1280,
+      "p95Ms": 18.182000145316124,
+      "totalMemoryMb": 2516.1796875,
+      "sample": 1,
+      "cpuP95Ms": 5.153500009328127,
+      "height": 720,
+      "p50Ms": 16.65480062365532,
+      "cpuP50Ms": 4.299600142985582,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.000210200007132,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.45955198584124446,
+      "gpuP95Ms": 0.9448639466427267,
+      "frames": 900,
+      "width": 1280,
+      "p95Ms": 17.746800556778908,
+      "totalMemoryMb": 2516.19140625,
+      "sample": 2,
+      "cpuP95Ms": 4.957499913871288,
+      "height": 720,
+      "p50Ms": 16.677899286150932,
+      "cpuP50Ms": 4.304099828004837,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.016455299999507,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.4384320054668933,
+      "gpuP95Ms": 0.6787520251236856,
+      "frames": 902,
+      "width": 1920,
+      "p95Ms": 17.635799944400787,
+      "totalMemoryMb": 2518.8125,
+      "sample": 1,
+      "cpuP95Ms": 4.767899867147207,
+      "height": 1080,
+      "p50Ms": 16.693800687789917,
+      "cpuP50Ms": 4.113399889320135,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.015837499995541,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.45379201765172184,
+      "gpuP95Ms": 0.6516159628517926,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.989199608564377,
+      "totalMemoryMb": 2519.0546875,
+      "sample": 2,
+      "cpuP95Ms": 4.994599614292383,
+      "height": 1080,
+      "p50Ms": 16.668399795889854,
+      "cpuP50Ms": 4.189700353890657,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.01707180000085,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.576319987885654,
+      "gpuP95Ms": 1.131584052927792,
+      "frames": 902,
+      "width": 1280,
+      "p95Ms": 17.939399927854538,
+      "totalMemoryMb": 2519.79296875,
+      "sample": 1,
+      "cpuP95Ms": 5.23030012845993,
+      "height": 720,
+      "p50Ms": 16.680000349879265,
+      "cpuP50Ms": 4.389400128275156,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.015123700002732,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.6070719682611525,
+      "gpuP95Ms": 1.0669759940356016,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 17.876600846648216,
+      "totalMemoryMb": 2519.50390625,
+      "sample": 2,
+      "cpuP95Ms": 5.121299996972084,
+      "height": 720,
+      "p50Ms": 16.662800684571266,
+      "cpuP50Ms": 4.370299633592367,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.01658370000223,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.5011839675717056,
+      "gpuP95Ms": 0.9672319865785539,
+      "frames": 902,
+      "width": 1920,
+      "p95Ms": 17.906999215483665,
+      "totalMemoryMb": 2520.13671875,
+      "sample": 1,
+      "cpuP95Ms": 5.01680001616478,
+      "height": 1080,
+      "p50Ms": 16.65250025689602,
+      "cpuP50Ms": 4.197800066322088,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.016848899998877,
+      "mapId": "relevo",
+      "gpuP50Ms": 0.45084801968187094,
+      "gpuP95Ms": 0.6412160000763834,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.739100381731987,
+      "totalMemoryMb": 2518.72265625,
+      "sample": 2,
+      "cpuP95Ms": 4.8246001824736595,
+      "height": 1080,
+      "p50Ms": 16.685999929904938,
+      "cpuP50Ms": 4.1338000446558,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.015615800002706,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.37664000410586596,
+      "gpuP95Ms": 1.0176319628953934,
+      "frames": 902,
+      "width": 1280,
+      "p95Ms": 17.9882999509573,
+      "totalMemoryMb": 2474.66796875,
+      "sample": 1,
+      "cpuP95Ms": 5.03480015322566,
+      "height": 720,
+      "p50Ms": 16.652099788188934,
+      "cpuP50Ms": 4.117400385439396,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.016268600003968,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.5044799763709307,
+      "gpuP95Ms": 1.0328320786356926,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 18.219999969005585,
+      "totalMemoryMb": 2475.55859375,
+      "sample": 2,
+      "cpuP95Ms": 5.013300105929375,
+      "height": 720,
+      "p50Ms": 16.6631992906332,
+      "cpuP50Ms": 4.250600002706051,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.000295500001812,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.4340799932833761,
+      "gpuP95Ms": 0.8040639804676175,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.67759956419468,
+      "totalMemoryMb": 2477.11328125,
+      "sample": 1,
+      "cpuP95Ms": 4.803000018000603,
+      "height": 1080,
+      "p50Ms": 16.679400578141212,
+      "cpuP50Ms": 4.120600409805775,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.015137400005187,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.41376001900061965,
+      "gpuP95Ms": 0.6966079818084836,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.834199592471123,
+      "totalMemoryMb": 2477.40234375,
+      "sample": 2,
+      "cpuP95Ms": 4.8060002736747265,
+      "height": 1080,
+      "p50Ms": 16.681000590324402,
+      "cpuP50Ms": 4.10120002925396,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.000769099999161,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.3621119831223041,
+      "gpuP95Ms": 0.7990720332600176,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 17.84759946167469,
+      "totalMemoryMb": 2478.484375,
+      "sample": 1,
+      "cpuP95Ms": 4.954800009727478,
+      "height": 720,
+      "p50Ms": 16.657700762152672,
+      "cpuP50Ms": 4.145500250160694,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.01585470000282,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.4519039939623326,
+      "gpuP95Ms": 1.0312000522390008,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 17.90509931743145,
+      "totalMemoryMb": 2478.59765625,
+      "sample": 2,
+      "cpuP95Ms": 5.092899780720472,
+      "height": 720,
+      "p50Ms": 16.688000410795212,
+      "cpuP50Ms": 4.116399679332972,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.015769000005093,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.5007680156268179,
+      "gpuP95Ms": 1.0927679250016809,
+      "frames": 902,
+      "width": 1920,
+      "p95Ms": 18.05819943547249,
+      "totalMemoryMb": 2479.23828125,
+      "sample": 1,
+      "cpuP95Ms": 4.923699889332056,
+      "height": 1080,
+      "p50Ms": 16.692200675606728,
+      "cpuP50Ms": 4.171399865299463,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.000564300004044,
+      "mapId": "puerto",
+      "gpuP50Ms": 0.45148798380978405,
+      "gpuP95Ms": 0.7796480203978717,
+      "frames": 900,
+      "width": 1920,
+      "p95Ms": 17.690999433398247,
+      "totalMemoryMb": 2479.390625,
+      "sample": 2,
+      "cpuP95Ms": 4.895600024610758,
+      "height": 1080,
+      "p50Ms": 16.69370010495186,
+      "cpuP50Ms": 4.147399682551622,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.000465399993118,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.4293120000511408,
+      "gpuP95Ms": 0.61465596081689,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 17.713699489831924,
+      "totalMemoryMb": 2482.0625,
+      "sample": 1,
+      "cpuP95Ms": 4.901600070297718,
+      "height": 720,
+      "p50Ms": 16.662800684571266,
+      "cpuP50Ms": 4.223700147122145,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.014990299998317,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.43360001291148365,
+      "gpuP95Ms": 0.9697279892861843,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 18.161000683903694,
+      "totalMemoryMb": 2482.453125,
+      "sample": 2,
+      "cpuP95Ms": 5.038099829107523,
+      "height": 720,
+      "p50Ms": 16.689900308847427,
+      "cpuP50Ms": 4.296500235795975,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.016551700005948,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.8601279696449637,
+      "gpuP95Ms": 1.2309119338169694,
+      "frames": 902,
+      "width": 1920,
+      "p95Ms": 17.86929927766323,
+      "totalMemoryMb": 2483.15625,
+      "sample": 1,
+      "cpuP95Ms": 5.205799825489521,
+      "height": 1080,
+      "p50Ms": 16.665300354361534,
+      "cpuP50Ms": 4.353300202637911,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.01622800000041,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.5402879905886948,
+      "gpuP95Ms": 1.2053760001435876,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.846500501036644,
+      "totalMemoryMb": 2483.375,
+      "sample": 2,
+      "cpuP95Ms": 5.096799694001675,
+      "height": 1080,
+      "p50Ms": 16.661599278450012,
+      "cpuP50Ms": 4.214100074023008,
+      "quality": "Level05"
+    },
+    {
+      "seconds": 15.016602099996817,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.40959997568279505,
+      "gpuP95Ms": 0.6646399851888418,
+      "frames": 902,
+      "width": 1280,
+      "p95Ms": 17.885299399495125,
+      "totalMemoryMb": 2484.08984375,
+      "sample": 1,
+      "cpuP95Ms": 4.850999917834997,
+      "height": 720,
+      "p50Ms": 16.66240021586418,
+      "cpuP50Ms": 4.195700399577618,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.015085400002135,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.4129919980186969,
+      "gpuP95Ms": 0.7045120000839233,
+      "frames": 901,
+      "width": 1280,
+      "p95Ms": 17.764100804924965,
+      "totalMemoryMb": 2484.09765625,
+      "sample": 2,
+      "cpuP95Ms": 5.0131999887526035,
+      "height": 720,
+      "p50Ms": 16.654400154948235,
+      "cpuP50Ms": 4.221799783408642,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.000350000002072,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.5657279980368912,
+      "gpuP95Ms": 1.1844480177387595,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.927799373865128,
+      "totalMemoryMb": 2485.01953125,
+      "sample": 1,
+      "cpuP95Ms": 5.363000091165304,
+      "height": 1080,
+      "p50Ms": 16.66400022804737,
+      "cpuP50Ms": 4.363799933344126,
+      "quality": "Level10"
+    },
+    {
+      "seconds": 15.016933200000494,
+      "mapId": "invernadero",
+      "gpuP50Ms": 0.6578239845111966,
+      "gpuP95Ms": 1.2535040732473135,
+      "frames": 901,
+      "width": 1920,
+      "p95Ms": 17.990799620747566,
+      "totalMemoryMb": 2485.203125,
+      "sample": 2,
+      "cpuP95Ms": 5.197300110012293,
+      "height": 1080,
+      "p50Ms": 16.690999269485474,
+      "cpuP50Ms": 4.318299703299999,
+      "quality": "Level10"
+    }
+  ],
+  "camera": [
+    -8,
+    4.5,
+    -24,
+    0,
+    7,
+    0
+  ],
+  "invernaderoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 10,
+          "Triangles": 3432
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 84
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 16,
+      "Triangles": 3544
+    }
+  },
+  "puertoScene": {
+    "Children": [
+      {
+        "Name": "Opaque",
+        "Sizes": {
+          "Drawcalls": 7,
+          "Triangles": 1212
+        }
+      },
+      {
+        "Name": "UI",
+        "Sizes": {
+          "Drawcalls": 4,
+          "Triangles": 98
+        }
+      },
+      {
+        "Name": "Sky",
+        "Sizes": {
+          "Drawcalls": 3,
+          "Triangles": 28
+        }
+      }
+    ],
+    "Name": "TriangleComposition",
+    "Sizes": {
+      "Drawcalls": 14,
+      "Triangles": 1338
+    }
+  },
+  "sampleSeconds": 15,
+  "human": false,
+  "warmupSeconds": 5,
+  "mode": "idle map rendering"
+}

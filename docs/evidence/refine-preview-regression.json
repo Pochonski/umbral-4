@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"ok\":true,\"baseline\":{\"absent\":0,\"afterFolderArrives\":0,\"partialCached\":true,\"stableClone\":true,\"eventuallyClonedParts\":0},\"candidate\":{\"absent\":0,\"afterFolderArrives\":1,\"partialCached\":false,\"stableClone\":true,\"eventuallyClonedParts\":240},\"checks\":{\"1\":\"late folder retries\",\"4\":\"unchanged vote doesn't clone again\",\"3\":\"timer recovers without another state event\",\"2\":\"partial model isn't cached\"},\"human\":false}"
+    }
+  ],
+  "isError": false
+}
