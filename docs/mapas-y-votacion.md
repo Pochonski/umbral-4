@@ -6,6 +6,8 @@ Informe técnico dirigido a ChatGPT y al propietario. Fecha: 18 de noviembre de 
 
 La candidata añade **Puerto de Carga** e **Invernadero de Protocolo**, con elección del próximo mapa por votación al terminar cada ronda. Parte de `0da999338c24ca562ff402cb1e0cc25ac487a30e`, rama `ui/terminal-principal`. Se trabaja en `maps/puerto-invernadero`, en un worktree separado. No modifica las ramas de estabilización ni arte y no fusiona sus PR. No publica en Roblox.
 
+Entrega: [PR #4 en borrador](https://github.com/Pochonski/umbral-4/pull/4), apilado sobre #3. [Commit de implementación y evidencias](https://github.com/Pochonski/umbral-4/commit/897af348afa68830c2ca2280b53b9db40537ee48). [GitHub Actions: validación satisfactoria de ese commit](https://github.com/Pochonski/umbral-4/actions/runs/44252074715). El historial posterior puede incorporar documentación; el paquete identifica su commit exacto en `REVISION.json`.
+
 Estación de Relevo conserva su archivo original, sus coberturas, Bounds y puntos de aparición. La autoridad del combate, los límites de alcance y ángulo, la escritura y los tiempos de protección permanecen como en la base. La nueva integración cambia la referencia del mapa activo y añade el estado de votación.
 
 Los resultados documentados son de automatización y observación real de Studio. **No se ha realizado un playtest con dos personas**, ni una certificación con ocho clientes o hardware modesto. El objetivo de esta entrega es una candidata reproducible para revisar y jugar, no una declaración de equilibrio competitivo definitivo.
