@@ -34,6 +34,8 @@ Copiar esta tabla a un documento compartido o archivo CSV. No hacen falta servic
 
 Al terminar, ambos califican de 1 a 5: lectura de placas, escritura mientras se mueven, cámara, comprensión de rechazos y preferencia de mapa. Anotar además si una aparición deja al jugador atrapado o expuesto sin salida, especialmente Spawn 03 de Relevo.
 
+En Spawn 03 y 09, intentar primero una salida natural sin indicaciones. Después comprobar la diagonal hacia el centro y las rutas laterales. En Spawn 09 la baliza bloquea la dirección +X en la prueba automática: registrar si resulta comprensible o si interrumpe injustamente la reaparición. No confundir ese resultado automatizado con una evaluación humana ya completada.
+
 ## Pendientes que este ensayo no sustituye
 
 Ocho participantes, hardware modesto, latencia adversa controlada, balance estadístico de apariciones y pruebas largas. Un éxito de 15 minutos permite decidir el siguiente ajuste; no demuestra ausencia total de defectos.

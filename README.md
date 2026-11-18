@@ -10,6 +10,8 @@ Umbral 4 es un juego competitivo de Roblox para PC. Entre dos y ocho jugadores b
 
 Esta rama añade **Puerto de Carga**, **Invernadero de Protocolo** y votación entre rondas, sobre el menú Terminal industrial y Estación de Relevo. Es una candidata en revisión; el enlace de descarga anterior sigue siendo **v0.1.0**. Para obtener los tres mapas, compila esta rama con Rojo. Consulta el [informe de mapas, pruebas y rendimiento](docs/mapas-y-votacion.md) y el [playtest de 15 minutos](docs/playtest-tres-mapas.md).
 
+El [refinamiento del PR #4](docs/refinamiento-tres-mapas.md) mejora las miniaturas y corrige su carga tardía, con pruebas de transición bajo latencia y revisión de Spawn 03/09. La prueba con dos oponentes bajo latencia permanece pendiente por memoria.
+
 ![Puerto de Carga: torre de transferencia y contenedores](docs/images/puerto-primera-persona.jpg)
 
 ![Invernadero de Protocolo: núcleo de cultivo y galerías](docs/images/invernadero-primera-persona.jpg)
@@ -71,6 +73,7 @@ luau tests/rules.luau
 luau tests/input_buffer.luau
 luau tests/map_vote.luau
 python tests/verify_new_maps.py
+python tests/verify_preview_assets.py
 python tests/build_studio_qa.py (Get-Command rojo).Source Umbral4-QA.rbxlx
 python tests/build_studio_qa.py (Get-Command rojo).Source Umbral4-Mapas-QA.rbxlx --maps
 ```

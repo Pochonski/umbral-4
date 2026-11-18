@@ -59,9 +59,13 @@ def verify(first, second, sync):
         assert any(path == (*template, "PlayableBounds") for path, _ in items), f"Missing bounds {name}"
     for name in ("EstacionDeRelevo", "PuertoDeCarga", "InvernaderoDeProtocolo"):
         preview = ("ReplicatedStorage", "UmbralMapPreviews", name)
-        pieces = [item for path, item in items if path[:-1] == preview]
-        assert 0 < len(pieces) <= 42, f"Missing or oversized preview {name}"
-        assert all(item.attrib["class"] in {"Part", "WedgePart"} for item in pieces), name
+        children = [item for path, item in items if path[:-1] == preview]
+        pieces = [item for item in children if item.attrib["class"] in {"Part", "WedgePart"}]
+        assert 0 < len(pieces) <= 240, f"Missing or oversized preview {name}"
+        metadata = [item for item in children if item.attrib["class"] == "IntValue"]
+        assert len(metadata) == 1 and len(children) == len(pieces)+1, name
+        assert metadata[0].findtext("Properties/string[@name='Name']") == "PreviewPartCount", name
+        assert int(metadata[0].findtext("Properties/*[@name='Value']")) == len(pieces), name
     print(f"Verified {len(scripts)} scripts, {len(spawns)} spawn markers and no QA instances")
     print("Verified two complete map templates and three bounded native previews")
     print("SHA-256 " + hashlib.sha256(release).hexdigest())

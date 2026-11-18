@@ -1,0 +1,113 @@
+{
+  "ok": true,
+  "clients": [
+    {
+      "enabledPlateFrames": 0,
+      "errors": [],
+      "frames": 1805,
+      "rounds": {
+        "1": {
+          "previousCharacterRemoved": true,
+          "revision": 1,
+          "mapId": "relevo",
+          "spawnCount": 12,
+          "convergedAfterMs": 45.599937438964844,
+          "activeModels": 1,
+          "stateAt": 1795027072.118161,
+          "viewport": "689, 635"
+        },
+        "4": {
+          "previousCharacterRemoved": true,
+          "revision": 4,
+          "mapId": "relevo",
+          "spawnCount": 12,
+          "convergedAfterMs": 49.143075942993164,
+          "activeModels": 1,
+          "stateAt": 1795027186.978859,
+          "viewport": "689, 635"
+        },
+        "3": {
+          "previousCharacterRemoved": true,
+          "revision": 3,
+          "mapId": "invernadero",
+          "spawnCount": 12,
+          "convergedAfterMs": 48.828840255737305,
+          "activeModels": 1,
+          "stateAt": 1795027148.693864,
+          "viewport": "689, 635"
+        },
+        "2": {
+          "previousCharacterRemoved": true,
+          "revision": 2,
+          "mapId": "puerto",
+          "spawnCount": 12,
+          "convergedAfterMs": 4.324197769165039,
+          "activeModels": 1,
+          "stateAt": 1795027110.400905,
+          "viewport": "689, 635"
+        }
+      },
+      "userId": -1,
+      "human": false,
+      "transitionFrameP95Ms": 67.89589673280716,
+      "transitionFrames": 662,
+      "echoMs": [
+        274.3883000075584,
+        200.36800000525545,
+        182.92019999353215,
+        200.58229999267496,
+        182.60970000119414,
+        199.2475999868475,
+        199.98420000774786,
+        182.3875000118278
+      ]
+    }
+  ],
+  "checks": [
+    "relevo: one complete arena, new avatars in bounds, old map/avatar removed",
+    "relevo: single-client transport mode; opponent combat deliberately not tested",
+    "relevo \u2192 puerto: lobby avatars and 1 vote(s) before replacement",
+    "puerto: one complete arena, new avatars in bounds, old map/avatar removed",
+    "puerto: single-client transport mode; opponent combat deliberately not tested",
+    "puerto \u2192 invernadero: lobby avatars and 1 vote(s) before replacement",
+    "invernadero: one complete arena, new avatars in bounds, old map/avatar removed",
+    "invernadero: single-client transport mode; opponent combat deliberately not tested",
+    "invernadero \u2192 relevo: lobby avatars and 1 vote(s) before replacement",
+    "relevo: one complete arena, new avatars in bounds, old map/avatar removed",
+    "relevo: single-client transport mode; opponent combat deliberately not tested",
+    "1 client(s): no obsolete plates, no stale packet plate, no old avatars; all four rounds converged"
+  ],
+  "clientCount": 1,
+  "human": false,
+  "transitions": [
+    {
+      "serverVoteDeadline": 1795027106.867194,
+      "voteId": 1,
+      "to": "puerto",
+      "from": "relevo"
+    },
+    {
+      "serverVoteDeadline": 1795027145.149595,
+      "voteId": 2,
+      "to": "invernadero",
+      "from": "puerto"
+    },
+    {
+      "serverVoteDeadline": 1795027183.43162,
+      "voteId": 3,
+      "to": "relevo",
+      "from": "invernadero"
+    }
+  ],
+  "opponentCombat": false,
+  "engineOk": true,
+  "profile": "custom75",
+  "configured": {
+    "OutboundNetworkMinDelayMs": 75,
+    "OutboundNetworkJitterMs": 5,
+    "OutboundNetworkLossPercent": 0.20000000298023224,
+    "InboundNetworkMinDelayMs": 75,
+    "InboundNetworkLossPercent": 0.20000000298023224,
+    "InboundNetworkJitterMs": 5
+  }
+}

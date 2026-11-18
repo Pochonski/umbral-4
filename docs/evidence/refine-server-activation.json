@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"mode\":\"idle server mounting; no network RTT or combat load included\",\"cases\":{\"1\":{\"serverActivationMs\":16.472899995278568,\"mapId\":\"puerto\",\"sample\":1},\"3\":{\"serverActivationMs\":22.501800005557017,\"mapId\":\"relevo\",\"sample\":1},\"2\":{\"serverActivationMs\":12.510900007328019,\"mapId\":\"invernadero\",\"sample\":1},\"5\":{\"serverActivationMs\":8.705000000190922,\"mapId\":\"invernadero\",\"sample\":2},\"4\":{\"serverActivationMs\":15.465499993297272,\"mapId\":\"puerto\",\"sample\":2},\"7\":{\"serverActivationMs\":17.368100001476706,\"mapId\":\"puerto\",\"sample\":3},\"6\":{\"serverActivationMs\":20.395100000314416,\"mapId\":\"relevo\",\"sample\":2},\"9\":{\"serverActivationMs\":26.322600009734744,\"mapId\":\"relevo\",\"sample\":3},\"8\":{\"serverActivationMs\":7.917000009911135,\"mapId\":\"invernadero\",\"sample\":3}},\"human\":false}"
+    }
+  ],
+  "isError": false
+}

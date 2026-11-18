@@ -2,6 +2,8 @@
 
 Informe técnico dirigido a ChatGPT y al propietario. Fecha: 18 de noviembre de 2026.
 
+Este documento conserva la entrega inicial. Para los cambios posteriores de miniaturas, su corrección de replicación y la validación bajo latencia, consultar el [informe de refinamiento](refinamiento-tres-mapas.md).
+
 ## Resumen ejecutivo
 
 La candidata añade **Puerto de Carga** e **Invernadero de Protocolo**, con elección del próximo mapa por votación al terminar cada ronda. Parte de `0da999338c24ca562ff402cb1e0cc25ac487a30e`, rama `ui/terminal-principal`. Se trabaja en `maps/puerto-invernadero`, en un worktree separado. No modifica las ramas de estabilización ni arte y no fusiona sus PR. No publica en Roblox.

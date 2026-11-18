@@ -1,0 +1,111 @@
+{
+  "ok": true,
+  "sourceLuauFiles": 41,
+  "assetRegenerationIdentical": true,
+  "releaseFile": "Umbral4-TresMapas-Refinado.rbxlx",
+  "releaseSha256": "628c6fce8fb4230d4c4e8dd478b6ef643638e935eeeb2840bf8bf91d6d4f2579",
+  "checks": [
+    {
+      "name": "Compile all source and QA Luau",
+      "exitCode": 0,
+      "stdout": "Compiled 4 KLOC into 232 KB bytecode (read 0.00s, parse 0.00s, compile 0.01s)\n",
+      "stderr": ""
+    },
+    {
+      "name": "Analyze pure modules",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "rules",
+      "exitCode": 0,
+      "stdout": "PASS codes preserve leading zeroes and reject malformed remote values\nPASS a collision never reuses a code in the same round\nPASS a depleted code pool fails without giving out a duplicate\nPASS burst has two attempts and refills at two per second\nPASS round goals cover the intended population bands\nPASS a score tie shares first place and ignores departures\nPASS a round without eligible participants has no winner\nPASS 7 rule tests\n",
+      "stderr": ""
+    },
+    {
+      "name": "input_buffer",
+      "exitCode": 0,
+      "stdout": "PASS the fourth digit sends once and clears the editable buffer\nPASS backspace corrects a pending digit and preserves leading zeroes\nPASS a new key cannot complete an expired entry between HUD updates\nPASS clearing on focus change drops the partial attack\n",
+      "stderr": ""
+    },
+    {
+      "name": "map_vote",
+      "exitCode": 0,
+      "stdout": "PASS current map cannot be offered or selected\nPASS ballot generation and malformed options are rejected\nPASS one vote can change without accumulating votes\nPASS departures and unready remove votes\nPASS a strict majority wins independently of the random selector\nPASS a tie and abstention select only permitted alternatives\nPASS 6 map vote tests\n",
+      "stderr": ""
+    },
+    {
+      "name": "Preview identity and completeness",
+      "exitCode": 0,
+      "stdout": "PASS EstacionDeRelevo: 240 native parts, matching source, complete metadata, camera and query flags\nPASS PuertoDeCarga: 240 native parts, matching source, complete metadata, camera and query flags\nPASS InvernaderoDeProtocolo: 238 native parts, matching source, complete metadata, camera and query flags\n",
+      "stderr": ""
+    },
+    {
+      "name": "Map structural integrity",
+      "exitCode": 0,
+      "stdout": "{\n  \"structural\": \"PASS\",\n  \"relevoUnchanged\": true,\n  \"maps\": {\n    \"PuertoDeCarga\": {\n      \"parts\": 278,\n      \"spawns\": 12,\n      \"localLights\": 2,\n      \"sha256\": \"dfce5efc5c25508daa2ca55a60e77637251caf083532a23862cba666b56d0ece\"\n    },\n    \"InvernaderoDeProtocolo\": {\n      \"parts\": 264,\n      \"spawns\": 12,\n      \"localLights\": 4,\n      \"sha256\": \"5c01d925af1e4540fe974a7d6d125cfcc1c2b9926a84259729290f0fcb688455\"\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "Generate maps",
+      "exitCode": 0,
+      "stdout": "PuertoDeCarga: 278 parts\nInvernaderoDeProtocolo: 264 parts\n",
+      "stderr": ""
+    },
+    {
+      "name": "Generate previews",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "Build release",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-TresMapas-Refinado.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Rebuild release",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-TresMapas-Refinado-rebuild.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Sync sourcemap",
+      "exitCode": 0,
+      "stdout": "Created sourcemap at <workspace>\\outputs\\Umbral4-TresMapas-Refinado-sync.json\n",
+      "stderr": ""
+    },
+    {
+      "name": "Verify release",
+      "exitCode": 0,
+      "stdout": "Verified 12 scripts, 12 spawn markers and no QA instances\nVerified two complete map templates and three bounded native previews\nSHA-256 628c6fce8fb4230d4c4e8dd478b6ef643638e935eeeb2840bf8bf91d6d4f2579\n",
+      "stderr": ""
+    },
+    {
+      "name": "Build separate maps QA",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-Mapas-QA.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Build two-client transition QA",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-Transiciones-QA.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Build one-client transition QA",
+      "exitCode": 0,
+      "stdout": "Building project 'Umbral 4'\nBuilt project to Umbral4-Transiciones-1-QA.rbxlx\n",
+      "stderr": ""
+    },
+    {
+      "name": "Whitespace",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'docs/mapas-y-votacion.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/playtest-tres-mapas.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'map/InvernaderoDeProtocolo.rbxmx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'map/MapPreviews.rbxmx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'map/PuertoDeCarga.rbxmx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/shared/Maps.luau', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/maps/vote_layout.luau', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ]
+}

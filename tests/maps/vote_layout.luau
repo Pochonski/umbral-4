@@ -14,7 +14,10 @@ for i,c in view.cards do c.button.Activated:Connect(function() clicks[i]+=1 end)
 view.leave.Activated:Connect(function() clicks[3]+=1 end)
 local state={phase="voting",ready=true,deadline=workspace:GetServerTimeNow()+10,
     vote={id=1,options={"puerto","invernadero"},counts={puerto=2,invernadero=1},selected="puerto"}}
-view.state(state);view.updateTime(state,workspace:GetServerTimeNow())
+view.state(state);view.updateTime(state,state.deadline-10)
+_G.UmbralVoteLayoutOptions=function(options)
+    state.vote.options=options;view.state(state);view.updateTime(state,state.deadline-10)
+end
 local input=assert(game:GetService("UserInputService"):CreateVirtualInput())
 local function click(button)
     local pos=button.AbsolutePosition+button.AbsoluteSize/2+game:GetService("GuiService"):GetGuiInset()
@@ -44,6 +47,6 @@ _G.UmbralVoteLayoutResize=function(w,h)
 end
 _G.UmbralVoteLayoutCleanup=function()
     gui:Destroy();for g,value in hidden do g.Enabled=value end
-    _G.UmbralVoteLayoutResize=nil;_G.UmbralVoteLayoutCleanup=nil
+    _G.UmbralVoteLayoutResize=nil;_G.UmbralVoteLayoutCleanup=nil;_G.UmbralVoteLayoutOptions=nil
 end
 return "Synthetic layout ready; call _G.UmbralVoteLayoutResize(width,height), capture, then cleanup"

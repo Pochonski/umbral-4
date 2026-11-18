@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"samples\":{\"1\":405.75299072265627,\"3\":387.7619934082031,\"2\":404.3789978027344,\"5\":393.4590148925781,\"4\":396.88299560546877},\"source\":\"client NetworkPing via MCP Plugin context\",\"unit\":\"ms\"}"
+    }
+  ],
+  "isError": false
+}

@@ -1,0 +1,27 @@
+{
+  "ok": false,
+  "error": "ServerScriptService.UmbralQA:100: attempt to index nil with 'report'",
+  "checks": [
+    "relevo: one complete arena, new avatars in bounds, old map/avatar removed",
+    "relevo: single-client transport mode; opponent combat deliberately not tested",
+    "relevo \u2192 puerto: lobby avatars and 1 vote(s) before replacement",
+    "puerto: one complete arena, new avatars in bounds, old map/avatar removed",
+    "puerto: single-client transport mode; opponent combat deliberately not tested",
+    "puerto \u2192 invernadero: lobby avatars and 1 vote(s) before replacement",
+    "invernadero: one complete arena, new avatars in bounds, old map/avatar removed",
+    "invernadero: single-client transport mode; opponent combat deliberately not tested",
+    "invernadero \u2192 relevo: lobby avatars and 1 vote(s) before replacement",
+    "relevo: one complete arena, new avatars in bounds, old map/avatar removed",
+    "relevo: single-client transport mode; opponent combat deliberately not tested"
+  ],
+  "engineOk": true,
+  "profile": "zero",
+  "configured": {
+    "OutboundNetworkMinDelayMs": 0,
+    "OutboundNetworkJitterMs": 0,
+    "OutboundNetworkLossPercent": 0,
+    "InboundNetworkMinDelayMs": 0,
+    "InboundNetworkLossPercent": 0,
+    "InboundNetworkJitterMs": 0
+  }
+}

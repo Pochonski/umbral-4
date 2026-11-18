@@ -42,6 +42,7 @@ jobs:
           python3 tests/verify_new_maps.py
           python3 tools/build_maps.py
           python3 tools/build_previews.py
+          python3 tests/verify_preview_assets.py
           git diff --exit-code -- map
 
       - name: Verify reproducible build and scripts-only sync

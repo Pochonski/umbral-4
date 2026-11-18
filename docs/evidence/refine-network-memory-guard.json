@@ -1,0 +1,10 @@
+{
+  "clientsRequested": 2,
+  "completed": false,
+  "status": "aborted safely via StudioTestService.EndTest",
+  "freeMemoryKbObserved": 386152,
+  "thresholdGb": 1,
+  "rootPlusTestProcesses": 4,
+  "reason": "Insufficient RAM; no results asserted",
+  "alternative": "one actual client process plus a separate local server; QA MinPlayers=1; no opponent combat"
+}

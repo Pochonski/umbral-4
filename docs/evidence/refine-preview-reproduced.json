@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"before\":0,\"reproduced\":true,\"expectedAfter\":1,\"afterReplication\":0,\"cachedMapId\":\"puerto\"}"
+    }
+  ],
+  "isError": false
+}

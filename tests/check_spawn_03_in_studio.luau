@@ -3,7 +3,9 @@ local localPlayer = game.Players.LocalPlayer
 local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local root = character:WaitForChild("HumanoidRootPart")
-local arena = workspace.UmbralWorld.EstacionDeRelevo
+local active = workspace.UmbralWorld.ActiveArena
+assert(active:GetAttribute("MapId") == "relevo", "Load Relevo first")
+local arena = assert(active:FindFirstChildWhichIsA("Model"))
 local marker = arena.Spawns["Spawn 03"]
 local controls = require(localPlayer.PlayerScripts:WaitForChild("PlayerModule")):GetControls()
 local previous = character:GetPivot()
